@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Page } from '../components/ui'
 import { CENTS_PER_POINT, POINTS_PER_DOLLAR, SHOPS } from '../data'
@@ -5,6 +6,7 @@ import { useWallet } from '../store'
 
 export default function Profile() {
   const { reset } = useWallet()
+  const [wasReset, setWasReset] = useState(false)
   return (
     <Page title="Profile" back="/">
       <section className="profile">
@@ -24,8 +26,8 @@ export default function Profile() {
       <div className="list">
         <Link to="/wallet" className="row"><span className="row-main"><strong>Wallet & payment methods</strong></span></Link>
         <Link to="/wallet/activity" className="row"><span className="row-main"><strong>Activity</strong></span></Link>
-        <button className="row" onClick={() => { reset(); alert('Demo data reset.') }}>
-          <span className="row-main"><strong>Reset demo data</strong><small>Restore the sample balance and history</small></span>
+        <button className="row" onClick={() => { reset(); setWasReset(true) }}>
+          <span className="row-main"><strong>Reset demo data</strong><small>{wasReset ? 'Done. Sample balance and history restored.' : 'Restore the sample balance and history'}</small></span>
         </button>
       </div>
     </Page>
