@@ -1,24 +1,30 @@
 /*
  * CommonWealth app styles, built on the brand guide's tokens.
  * Layout: phone-width app frame; solid color blocks; the awning stripe is the one pattern.
- * Hex values are interpretations of the guide's token names; all text pairs meet 4.5:1.
+ * Official brand hex values; dark-mode muted text, lines, soft panels and on-colors are
+ * derived. All text pairs meet 4.5:1 in both themes.
  */
 :root {
-  --paper: #f6f1e6;          /* ground, never pure white */
-  --surface-raised: #fbf8f1;
-  --ink: #1c2621;
-  --ink-muted: #56625b;
-  --line: #e2dccd;
-  --evergreen: #1d5a43;
-  --on-evergreen: #fbf8f1;
-  --evergreen-soft: #ddebe2;
-  --copper: #98521f;
-  --on-copper: #fbf8f1;
-  --marigold: #f2b233;
-  --on-marigold: #2b1e02;
-  --awning-alt: #fbf8f1;     /* the light stripe between marigold stripes */
+  --paper: #f6f1e7;          /* ground, never pure white */
+  --surface-raised: #ffffff; /* cards */
+  --ink: #14201c;
+  --ink-muted: #56625c;
+  --line: #e2d9c8;
+  --evergreen: #12463a;
+  --on-evergreen: #ffffff;
+  --evergreen-soft: #dcebe3;
+  --copper: #a8481a;
+  --on-copper: #ffffff;
+  --marigold: #f2b632;
+  --on-marigold: #14201c;
+  --awning-alt: #ffffff;     /* the light stripe between marigold stripes */
   --warn: #a63a2e;
-  --focus-ring: #1d5a43;
+  --focus-ring: #12463a;
+  /* logo colors: only the coin changes in dark mode (reverse logo) */
+  --logo-rim: #a8481a;
+  --logo-coin: #12463a;
+  --logo-face: #f6f1e7;
+  --logo-awning: #f2b632;
 
   --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
   --font-text: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -37,36 +43,38 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #111915;
-    --surface-raised: #1a241f;
-    --ink: #edf1ea;
-    --ink-muted: #a3aea7;
-    --line: #2c3832;
-    --evergreen: #7ccba5;
-    --on-evergreen: #0c1d15;
-    --evergreen-soft: #1d3a2d;
-    --copper: #e2a46f;
-    --on-copper: #24130a;
-    --awning-alt: #1a241f;
+    --paper: #0e1714;
+    --surface-raised: #16221e;
+    --ink: #eef2ec;
+    --ink-muted: #a5b0aa;
+    --line: #2a3732;
+    --evergreen: #5dbb98;
+    --on-evergreen: #0e1714;
+    --evergreen-soft: #1a362c;
+    --copper: #e58a55;
+    --on-copper: #0e1714;
+    --awning-alt: #16221e;
     --warn: #f08a7d;
-    --focus-ring: #f2b233;
+    --focus-ring: #f2b632;
+    --logo-coin: #267a60;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #111915;
-  --surface-raised: #1a241f;
-  --ink: #edf1ea;
-  --ink-muted: #a3aea7;
-  --line: #2c3832;
-  --evergreen: #7ccba5;
-  --on-evergreen: #0c1d15;
-  --evergreen-soft: #1d3a2d;
-  --copper: #e2a46f;
-  --on-copper: #24130a;
-  --awning-alt: #1a241f;
+  --paper: #0e1714;
+  --surface-raised: #16221e;
+  --ink: #eef2ec;
+  --ink-muted: #a5b0aa;
+  --line: #2a3732;
+  --evergreen: #5dbb98;
+  --on-evergreen: #0e1714;
+  --evergreen-soft: #1a362c;
+  --copper: #e58a55;
+  --on-copper: #0e1714;
+  --awning-alt: #16221e;
   --warn: #f08a7d;
-  --focus-ring: #f2b233;
+  --focus-ring: #f2b632;
+  --logo-coin: #267a60;
   color-scheme: dark;
 }
 

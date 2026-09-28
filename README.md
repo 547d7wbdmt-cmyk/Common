@@ -43,10 +43,11 @@ Each layer is a URL, so Back, refresh and deep links work everywhere.
 Styled to the CommonWealth brand guide: evergreen and copper brand pair,
 marigold for badges and the awning, paper ground; Bricolage Grotesque for
 headlines and the wordmark, Public Sans for text; the awning stripe as the
-one pattern. Color tokens live at the top of `app/src/index.css`. The hex
-values are interpretations of the guide's token names (it names tokens but
-not values) and every text pair was checked for 4.5:1 contrast in both
-themes. Swap in the official values when available.
+one pattern. Color tokens live at the top of `app/src/index.css` and use the official
+brand values (light and dark). A few dark-mode supporting colors not in the
+brand palette (muted text, dividers, tinted panels, text on buttons) are
+derived; every text pair was checked for 4.5:1 contrast in both themes.
+In dark mode the logo uses the reverse coin color.
 
 ## Where things live
 
