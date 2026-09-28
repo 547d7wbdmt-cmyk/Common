@@ -197,3 +197,34 @@
 .m-empty-state { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 0; max-width: 520px; }
 .m-empty-state h2 { font-size: 22px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* membership */
+.pill-ok { background: var(--evergreen-soft); color: var(--evergreen); }
+.pill-late { background: var(--warn); color: var(--surface-raised); }
+.m-member-plan { display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: var(--radius-lg); background: var(--surface-raised); border: 1px solid var(--line); max-width: 720px; }
+.m-member-plan.m-plan-due { border: 2px solid var(--marigold); }
+.m-member-plan.m-plan-overdue { border: 2px solid var(--warn); }
+.m-plan-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.m-plan-name { font-family: var(--font-display); font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+.m-plan-price { font-size: 16px; }
+.m-plan-price strong { font-family: var(--font-display); font-size: 36px; font-weight: 800; letter-spacing: -0.02em; margin-right: 4px; }
+.m-method-row { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-raised); max-width: 720px; }
+.m-change { color: var(--copper); font-weight: 600; font-size: 14px; }
+.m-includes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.m-includes li { display: flex; align-items: center; gap: 10px; }
+.m-includes svg { color: var(--evergreen); flex-shrink: 0; }
+.m-pay-summary { align-items: center; text-align: center; gap: 4px; padding: 20px; border-radius: var(--radius-lg); background: var(--evergreen-soft); }
+.m-receipt { display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: var(--radius-lg); background: var(--surface-raised); border: 1px solid var(--line); max-width: 720px; }
+.m-receipt-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.m-dues-banner {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: var(--radius-lg);
+  background: var(--evergreen-soft); color: var(--ink); font-weight: 400;
+}
+.m-dues-banner svg { color: var(--evergreen); flex-shrink: 0; }
+.m-dues-banner > span:nth-child(2) { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.m-dues-banner.is-late { background: var(--surface-raised); border: 2px solid var(--warn); }
+.m-dues-banner.is-late svg { color: var(--warn); }
+.m-dues-cta { font-weight: 600; color: var(--copper); white-space: nowrap; }
+.radio-row.is-disabled { opacity: 0.6; cursor: not-allowed; }
+.m-panel > .toggle, .m-includes { max-width: 720px; }

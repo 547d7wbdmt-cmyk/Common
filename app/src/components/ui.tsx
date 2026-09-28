@@ -21,6 +21,7 @@ const ICONS: Record<string, string> = {
   bank: 'M3 10h18L12 4zM5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18',
   settings: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1',
   more: 'M5 12h.01M12 12h.01M19 12h.01',
+  card: 'M3 6h18v12H3zM3 10h18M7 15h4',
   refund: 'M9 14 4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3',
   spark: 'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6',
 }

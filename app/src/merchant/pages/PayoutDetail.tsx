@@ -6,8 +6,8 @@ import { MPage } from '../ui'
 
 export default function PayoutDetail() {
   const { day = '' } = useParams()
-  const { txns } = useMerchant()
-  const p = payouts(txns, todayKey()).find((x) => x.id === day)
+  const { txns, membership } = useMerchant()
+  const p = payouts(txns, todayKey(), membership.invoices).find((x) => x.id === day)
   if (!p) {
     return <MPage title="Payout" back="/merchant/payouts" section="payouts"><p className="empty">No sales on that day.</p></MPage>
   }
@@ -28,6 +28,7 @@ export default function PayoutDetail() {
         <div><dt>Rewards redeemed (reimbursed)</dt><dd>{money(p.rewards)}</dd></div>
         {p.refunds !== 0 && <div><dt>Refunds</dt><dd>−{money(-p.refunds)}</dd></div>}
         <div><dt>Fees ({FEE_RATE * 100}% of payments)</dt><dd>−{money(p.fees)}</dd></div>
+        {p.membership > 0 && <div><dt><Link to="/merchant/membership">Membership fee</Link></dt><dd>−{money(p.membership)}</dd></div>}
         <div className="m-total"><dt>Deposit</dt><dd>{money(p.net)}</dd></div>
       </dl>
 

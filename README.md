@@ -41,8 +41,8 @@ materials. Sidebar on tablets and computers, bottom tabs on phones.
 
 | Layer | Screens |
 |---|---|
-| 1 · Sections | Today · Counter · Transactions · Rewards (and bonus events) · Members · Payouts · Settings · More (phone) |
-| 2 · Detail | Transaction · Edit/new reward · Edit/new bonus event · Member · Payout (deposit statement) · Staff member |
+| 1 · Sections | Today · Counter · Transactions · Rewards (and bonus events) · Members · Payouts · Membership · Settings · More (phone) |
+| 2 · Detail | Transaction · Edit/new reward · Edit/new bonus event · Member · Payout (deposit statement) · Pay membership · Membership receipt · Staff member |
 | 3 · Deeper | Refund a transaction · Payout line items |
 | Overlays | Charge a member → waiting for approval → payment received · Reward code valid → confirm · Confirm refund · Publish bonus event · Add staff |
 
@@ -50,6 +50,7 @@ Rules in the prototype (`app/src/merchant/data.ts`):
 - Payments start either way: the member scans the shop code, or the shop charges the member's card and the member approves.
 - Points members spend at the shop, on payments or rewards, are reimbursed at $0.01 each.
 - 2% fee on payments; each business day's sales are deposited the next business day.
+- Membership fee: every shop pays the Collective **$150 every 6 months** (placeholder, `MEMBERSHIP_FEE`). Payment opens 30 days before renewal and shows past due 15 days after. Pay by bank, card, or from the next deposit (only if that deposit covers the fee); autopay optional. Owner only.
 - Who pays for points earned at a shop is **to be decided** (`POINTS_FUNDING`); nothing is deducted for it yet.
 - Shops see only a member's CommonWealth ID, visit count and total spent.
 - Roles: Owner (everything), Manager (no payouts or bank), Cashier (Counter only). A demo switcher shows each role.

@@ -6,6 +6,32 @@ export const SHOP_ID = 'rosas-bakery'
 export const FEE_RATE = 0.02
 /** Who pays for the points members earn at a shop. Not decided yet; nothing is deducted for it. */
 export const POINTS_FUNDING = 'To be decided'
+/** Membership fee each shop pays the Collective, billed every 6 months. Placeholder amount (cents). */
+export const MEMBERSHIP_FEE = 15000
+export const MEMBERSHIP_MONTHS = 6
+/** Days after the due date before a membership shows as past due. */
+export const MEMBERSHIP_GRACE_DAYS = 15
+
+export type BillingMethod = 'bank' | 'card' | 'deposit'
+export const BILLING_METHODS: Record<BillingMethod, { label: string; sub: string }> = {
+  bank: { label: 'Checking •••• 3390', sub: 'Bank transfer · arrives in 1–2 business days' },
+  card: { label: 'Business card •••• 4417', sub: 'Charged right away' },
+  deposit: { label: 'Take it from my next deposit', sub: 'Deducted from your next daily deposit' },
+}
+
+/** One paid membership period. Day keys are YYYY-MM-DD; the period runs from start up to (not including) end. */
+export type Invoice = {
+  id: string
+  periodStart: string
+  periodEnd: string
+  amount: number
+  paidAt: string
+  method: BillingMethod
+  /** For 'deposit' payments: the deposit it was taken from. */
+  deductedOn?: string
+}
+export type Membership = { joined: string; autopay: boolean; autopayMethod: BillingMethod; invoices: Invoice[] }
+
 /** The member from the member-app demo, so the two sides line up. */
 export const DEMO_MEMBER = 'CW 2048 7731'
 
@@ -16,7 +42,7 @@ export const ROLES: Record<Role, { label: string; summary: string }> = {
   cashier: { label: 'Cashier', summary: 'Counter only: take payments and check reward codes' },
 }
 
-export type Section = 'today' | 'counter' | 'transactions' | 'rewards' | 'members' | 'payouts' | 'settings'
+export type Section = 'today' | 'counter' | 'transactions' | 'rewards' | 'members' | 'payouts' | 'membership' | 'settings'
 const ACCESS: Record<Section, Role[]> = {
   today: ['owner', 'manager'],
   counter: ['owner', 'manager', 'cashier'],
@@ -24,6 +50,7 @@ const ACCESS: Record<Section, Role[]> = {
   rewards: ['owner', 'manager'],
   members: ['owner', 'manager'],
   payouts: ['owner'],
+  membership: ['owner'],
   settings: ['owner', 'manager'],
 }
 export const canAccess = (role: Role, section: Section) => ACCESS[section].includes(role)
@@ -67,6 +94,7 @@ export type MerchantState = {
   rewards: MReward[]
   bonuses: BonusEvent[]
   vouchers: Voucher[]
+  membership: Membership
 }
 
 // ---------- money rules ----------
@@ -91,6 +119,12 @@ export const addDays = (k: string, n: number) => {
   d.setDate(d.getDate() + n)
   return dayKey(d)
 }
+export const addMonths = (k: string, n: number) => {
+  const d = fromKey(k)
+  d.setMonth(d.getMonth() + n)
+  return dayKey(d)
+}
+export const daysBetween = (a: string, b: string) => Math.round((fromKey(b).getTime() - fromKey(a).getTime()) / 86400000)
 export const nextBusinessDay = (k: string) => {
   let d = addDays(k, 1)
   while ([0, 6].includes(fromKey(d).getDay())) d = addDays(d, 1)
@@ -172,6 +206,10 @@ export function seedState(now = new Date()): MerchantState {
   txns.sort((a, b) => b.date.localeCompare(a.date))
 
   const daysAgo = (n: number) => { const d = new Date(now); d.setDate(d.getDate() - n); return d.toISOString() }
+  // Joined a year ago (less 12 days), so the current 6-month period ends in 12 days.
+  const joined = addDays(addMonths(today, -12), 12)
+  const period2 = addMonths(joined, MEMBERSHIP_MONTHS)
+  const at = (k: string) => fromKey(k).toISOString()
   return {
     profile: { name: "Rosa's Bakery", address: '48 Elm Ave', hours: '7am – 3pm, closed Mon', phone: '(555) 014-2290', about: 'Family bakery with fresh bread, pastries and custom cakes.' },
     staff: [
@@ -188,6 +226,15 @@ export function seedState(now = new Date()): MerchantState {
       { code: 'CW-M4RS', rewardId: 'r-cake', memberId: members[3], issued: daysAgo(1) },
       { code: 'CW-B8TL', rewardId: 'r-croissant', memberId: members[5], issued: daysAgo(6), usedAt: daysAgo(2) },
     ],
+    membership: {
+      joined,
+      autopay: false,
+      autopayMethod: 'bank',
+      invoices: [
+        { id: 'INV-2' + period2.replace(/-/g, '').slice(2), periodStart: period2, periodEnd: addMonths(joined, 2 * MEMBERSHIP_MONTHS), amount: MEMBERSHIP_FEE, paidAt: at(addDays(period2, -3)), method: 'card' },
+        { id: 'INV-1' + joined.replace(/-/g, '').slice(2), periodStart: joined, periodEnd: period2, amount: MEMBERSHIP_FEE, paidAt: at(joined), method: 'bank' },
+      ],
+    },
   }
 }
 
@@ -211,15 +258,17 @@ export type Payout = {
   rewards: number
   refunds: number
   fees: number
+  /** Membership fees taken from this deposit. */
+  membership: number
   net: number
   count: number
   paid: boolean
 }
-export function payouts(txns: MTxn[], today: string): Payout[] {
+export function payouts(txns: MTxn[], today: string, invoices: Invoice[] = []): Payout[] {
   const map = new Map<string, Payout>()
   for (const t of txns) {
     const k = dayKey(t.date)
-    const p = map.get(k) ?? { id: k, depositOn: nextBusinessDay(k), sales: 0, rewards: 0, refunds: 0, fees: 0, net: 0, count: 0, paid: false }
+    const p = map.get(k) ?? { id: k, depositOn: nextBusinessDay(k), sales: 0, rewards: 0, refunds: 0, fees: 0, membership: 0, net: 0, count: 0, paid: false }
     if (t.kind === 'payment') p.sales += t.total
     if (t.kind === 'reward') p.rewards += t.total
     if (t.kind === 'refund') p.refunds += t.total
@@ -229,5 +278,31 @@ export function payouts(txns: MTxn[], today: string): Payout[] {
     p.paid = p.depositOn <= today
     map.set(k, p)
   }
+  for (const inv of invoices) {
+    const p = inv.deductedOn && [...map.values()].find((x) => x.depositOn === inv.deductedOn)
+    if (p) { p.membership += inv.amount; p.net -= inv.amount }
+  }
   return [...map.values()].sort((a, b) => b.id.localeCompare(a.id))
+}
+
+export type MembershipStatus = {
+  state: 'active' | 'due' | 'overdue'
+  /** Start of the period that needs paying next (= end of the last paid period). */
+  dueOn: string
+  daysLeft: number
+  paidThrough: string
+  amount: number
+}
+export function membershipLabel({ state, daysLeft }: MembershipStatus) {
+  if (state === 'active') return 'Active'
+  if (state === 'overdue') return 'Past due'
+  return daysLeft > 0 ? `Due in ${daysLeft} day${daysLeft === 1 ? '' : 's'}` : daysLeft === 0 ? 'Due today' : `${-daysLeft} days late`
+}
+
+/** Where the membership stands today. "Due" opens 30 days before the paid period ends. */
+export function membershipStatus(m: Membership, today: string): MembershipStatus {
+  const dueOn = m.invoices[0]?.periodEnd ?? m.joined
+  const daysLeft = daysBetween(today, dueOn)
+  const state = daysLeft > 30 ? 'active' : daysLeft >= -MEMBERSHIP_GRACE_DAYS ? 'due' : 'overdue'
+  return { state, dueOn, daysLeft, paidThrough: addDays(dueOn, -1), amount: MEMBERSHIP_FEE }
 }

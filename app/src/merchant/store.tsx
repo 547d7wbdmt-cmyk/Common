@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { CENTS_PER_POINT } from '../data'
 import {
-  bonusOn, dayKey, feeFor, pointsFor, seedState,
-  type BonusEvent, type MerchantState, type MReward, type MTxn, type Role, type ShopProfile, type Staff, type Voucher,
+  addMonths, bonusOn, dayKey, feeFor, MEMBERSHIP_FEE, MEMBERSHIP_MONTHS, nextBusinessDay, pointsFor, seedState,
+  type BillingMethod, type BonusEvent, type Invoice, type MerchantState, type MReward, type MTxn, type Role, type ShopProfile, type Staff, type Voucher,
 } from './data'
 
-const STORAGE_KEY = 'cw-merchant-v1'
+const STORAGE_KEY = 'cw-merchant-v2'
 
 type Merchant = MerchantState & {
   me: Staff
@@ -22,6 +22,9 @@ type Merchant = MerchantState & {
   saveStaff: (staff: Staff) => void
   removeStaff: (id: string) => void
   saveProfile: (profile: ShopProfile) => void
+  /** Pay the next 6-month membership period. */
+  payMembership: (method: BillingMethod) => Invoice
+  setAutopay: (on: boolean, method?: BillingMethod) => void
   reset: () => void
 }
 
@@ -119,6 +122,23 @@ export function MerchantProvider({ children }: { children: ReactNode }) {
       })),
     removeStaff: (id) => setState((s) => ({ ...s, staff: s.staff.filter((x) => x.id !== id) })),
     saveProfile: (profile) => setState((s) => ({ ...s, profile })),
+    payMembership: (method) => {
+      const start = state.membership.invoices[0]?.periodEnd ?? state.membership.joined
+      const today = dayKey(new Date())
+      const invoice: Invoice = {
+        id: 'INV-' + String(state.membership.invoices.length + 1) + start.replace(/-/g, '').slice(2),
+        periodStart: start,
+        periodEnd: addMonths(start, MEMBERSHIP_MONTHS),
+        amount: MEMBERSHIP_FEE,
+        paidAt: new Date().toISOString(),
+        method,
+        ...(method === 'deposit' ? { deductedOn: nextBusinessDay(today) } : {}),
+      }
+      setState((s) => ({ ...s, membership: { ...s.membership, invoices: [invoice, ...s.membership.invoices] } }))
+      return invoice
+    },
+    setAutopay: (on, method) =>
+      setState((s) => ({ ...s, membership: { ...s.membership, autopay: on, autopayMethod: method ?? s.membership.autopayMethod } })),
     reset: () => setState(seedState()),
   }
 

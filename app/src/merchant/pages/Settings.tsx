@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon, Modal } from '../../components/ui'
 import { CENTS_PER_POINT, POINTS_EXPIRE_MONTHS, POINTS_PER_DOLLAR } from '../../data'
-import { FEE_RATE, POINTS_FUNDING, ROLES, type Role } from '../data'
+import { FEE_RATE, MEMBERSHIP_FEE, MEMBERSHIP_MONTHS, POINTS_FUNDING, ROLES, type Role } from '../data'
 import { newStaffId, useMerchant } from '../store'
+import { money } from '../../store'
 import { MPage } from '../ui'
 
 export default function Settings() {
@@ -74,6 +75,7 @@ export default function Settings() {
           <div><dt>Members earn</dt><dd>{POINTS_PER_DOLLAR} points per $1</dd></div>
           <div><dt>Points spent at your shop</dt><dd>Reimbursed at ${(CENTS_PER_POINT / 100).toFixed(2)} each</dd></div>
           <div><dt>Processing fee</dt><dd>{FEE_RATE * 100}% of each payment</dd></div>
+          <div><dt>Membership fee</dt><dd>{role === 'owner' ? <Link to="/merchant/membership">{money(MEMBERSHIP_FEE)} every {MEMBERSHIP_MONTHS} months</Link> : `${money(MEMBERSHIP_FEE)} every ${MEMBERSHIP_MONTHS} months`}</dd></div>
           <div><dt>Points expire</dt><dd>{POINTS_EXPIRE_MONTHS} months after they're earned</dd></div>
           <div><dt>Who pays for points earned here</dt><dd><span className="pill">{POINTS_FUNDING}</span></dd></div>
         </dl>

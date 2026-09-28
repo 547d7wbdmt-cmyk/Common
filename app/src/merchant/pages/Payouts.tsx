@@ -5,8 +5,8 @@ import { dayLabel, todayKey, useMerchant } from '../store'
 import { MPage, Stat } from '../ui'
 
 export default function Payouts() {
-  const { txns } = useMerchant()
-  const list = payouts(txns, todayKey())
+  const { txns, membership } = useMerchant()
+  const list = payouts(txns, todayKey(), membership.invoices)
   const pending = list.filter((p) => !p.paid)
   const last30 = list.filter((p) => p.paid).slice(0, 26)
 

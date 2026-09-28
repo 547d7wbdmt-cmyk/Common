@@ -20,6 +20,9 @@ import PayoutItems from './pages/PayoutItems'
 import Settings from './pages/Settings'
 import StaffDetail from './pages/StaffDetail'
 import More from './pages/More'
+import Membership from './pages/Membership'
+import MembershipPay from './pages/MembershipPay'
+import MembershipInvoice from './pages/MembershipInvoice'
 
 export const NAV: { section: Section; to: string; label: string; icon: string }[] = [
   { section: 'today', to: '/merchant', label: 'Today', icon: 'home' },
@@ -28,6 +31,7 @@ export const NAV: { section: Section; to: string; label: string; icon: string }[
   { section: 'rewards', to: '/merchant/rewards', label: 'Rewards', icon: 'gift' },
   { section: 'members', to: '/merchant/members', label: 'Members', icon: 'users' },
   { section: 'payouts', to: '/merchant/payouts', label: 'Payouts', icon: 'bank' },
+  { section: 'membership', to: '/merchant/membership', label: 'Membership', icon: 'card' },
   { section: 'settings', to: '/merchant/settings', label: 'Settings', icon: 'settings' },
 ]
 const PHONE_TABS: Section[] = ['today', 'counter', 'transactions']
@@ -102,8 +106,8 @@ function Home() {
 
 /*
  * Merchant page map (all under /merchant):
- *   Layer 1: /  counter  transactions  rewards  members  payouts  settings  (more, on phones)
- *   Layer 2: transactions/:id  rewards/:id (or new)  bonus/:id (or new)  members/:id  payouts/:day  settings/staff/:id
+ *   Layer 1: /  counter  transactions  rewards  members  payouts  membership  settings  (more, on phones)
+ *   Layer 2: transactions/:id  rewards/:id (or new)  bonus/:id (or new)  members/:id  payouts/:day  membership/pay  membership/invoices/:id  settings/staff/:id
  *   Layer 3: transactions/:id/refund  payouts/:day/items
  *   Overlays: payment received, charge a member, reward code check, confirm refund, publish bonus
  */
@@ -125,6 +129,9 @@ export default function MerchantApp() {
           <Route path="payouts" element={<Payouts />} />
           <Route path="payouts/:day" element={<PayoutDetail />} />
           <Route path="payouts/:day/items" element={<PayoutItems />} />
+          <Route path="membership" element={<Membership />} />
+          <Route path="membership/pay" element={<MembershipPay />} />
+          <Route path="membership/invoices/:invoiceId" element={<MembershipInvoice />} />
           <Route path="settings" element={<Settings />} />
           <Route path="settings/staff/:staffId" element={<StaffDetail />} />
           <Route path="more" element={<More />} />
