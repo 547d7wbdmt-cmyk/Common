@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:artifact": "tsc -b && vite build --mode artifact",
+    "build:artifact:merchant": "tsc -b && VITE_START_PATH=/merchant vite build --mode artifact --outDir dist-artifact-merchant",
     "lint": "oxlint",
     "preview": "vite preview"
   },

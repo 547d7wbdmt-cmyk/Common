@@ -27,6 +27,7 @@ export default function Profile() {
       <div className="list">
         <Link to="/wallet" className="row"><span className="row-main"><strong>Wallet & payment methods</strong></span></Link>
         <Link to="/wallet/activity" className="row"><span className="row-main"><strong>Activity</strong></span></Link>
+        <Link to="/merchant" className="row"><span className="row-main"><strong>Merchant portal (demo)</strong><small>See the business side as Rosa's Bakery</small></span></Link>
         <button className="row" onClick={() => { reset(); setWasReset(true) }}>
           <span className="row-main"><strong>Reset demo data</strong><small>{wasReset ? 'Done. Sample balance and history restored.' : 'Restore the sample balance and history'}</small></span>
         </button>

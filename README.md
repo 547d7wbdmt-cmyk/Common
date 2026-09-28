@@ -33,6 +33,27 @@ Each layer is a URL, so Back, refresh and deep links work everywhere.
 | 3 · Deeper | `/shops/:shopId/rewards/:rewardId` · `/wallet/activity/:txnId` (receipt) |
 | Overlays | Confirm payment · confirm add funds · redeem confirm → voucher QR · scan shop code · member card |
 
+## Merchant portal (`/merchant`)
+
+For member shops; the demo is signed in as **Rosa's Bakery**. Leads with the
+Common Cents Collective lockup, as the brand guide asks for merchant-facing
+materials. Sidebar on tablets and computers, bottom tabs on phones.
+
+| Layer | Screens |
+|---|---|
+| 1 · Sections | Today · Counter · Transactions · Rewards (and bonus events) · Members · Payouts · Settings · More (phone) |
+| 2 · Detail | Transaction · Edit/new reward · Edit/new bonus event · Member · Payout (deposit statement) · Staff member |
+| 3 · Deeper | Refund a transaction · Payout line items |
+| Overlays | Charge a member → waiting for approval → payment received · Reward code valid → confirm · Confirm refund · Publish bonus event · Add staff |
+
+Rules in the prototype (`app/src/merchant/data.ts`):
+- Payments start either way: the member scans the shop code, or the shop charges the member's card and the member approves.
+- Points members spend at the shop, on payments or rewards, are reimbursed at $0.01 each.
+- 2% fee on payments; each business day's sales are deposited the next business day.
+- Who pays for points earned at a shop is **to be decided** (`POINTS_FUNDING`); nothing is deducted for it yet.
+- Shops see only a member's CommonWealth ID, visit count and total spent.
+- Roles: Owner (everything), Manager (no payouts or bank), Cashier (Counter only). A demo switcher shows each role.
+
 ## Main flows
 
 - **Pay:** Pay tab → scan or pick shop → enter amount → optionally apply points → confirm → receipt (+points earned)
@@ -61,4 +82,5 @@ endorser line in live type so it follows light and dark mode.
 - `app/src/store.tsx` wallet state (balance, dated point batches, transactions) saved to localStorage
 - `app/src/App.tsx` routes and bottom tabs
 - `app/src/pages/` one file per screen · `app/src/components/ui.tsx` shared UI, including the logo mark and lockup
-- `npm run build:artifact` builds a single shareable HTML file into `app/dist-artifact/`
+- `npm run build:artifact` builds a single shareable HTML file into `app/dist-artifact/`; `npm run build:artifact:merchant` does the same, opening on the merchant portal
+- `app/src/merchant/` the merchant portal: data rules and sample ledger, store, shell and routes, pages

@@ -14,6 +14,7 @@ import TxnDetail from './pages/TxnDetail'
 import Points from './pages/Points'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import MerchantApp from './merchant/MerchantApp'
 
 const TABS = [
   { to: '/', label: 'Home', icon: 'home', end: true },
@@ -46,10 +47,12 @@ function Shell() {
  *   Layer 2: /shops/:shopId  /pay/:shopId  /rewards/:rewardId  /wallet/add  /wallet/activity  /wallet/points
  *   Layer 3: /shops/:shopId/rewards/:rewardId  /wallet/activity/:txnId
  *   Overlays (confirm, redeem code, QR) are modals on top of the current page.
+ * The merchant portal lives under /merchant (see merchant/MerchantApp.tsx).
  */
 export default function App() {
   return (
     <Routes>
+      <Route path="merchant/*" element={<MerchantApp />} />
       <Route element={<Shell />}>
         <Route index element={<Home />} />
         <Route path="shops" element={<Shops />} />
