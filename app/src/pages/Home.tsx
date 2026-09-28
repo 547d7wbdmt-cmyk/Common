@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Icon, Page, ShopBadge, TxnRow } from '../components/ui'
 import { POINTS_PER_DOLLAR, REWARDS, SHOPS, shopById } from '../data'
-import { money, pointsValue, useWallet } from '../store'
+import { dayDate, isExpiringSoon, money, pointsValue, useWallet } from '../store'
 
 export default function Home() {
-  const { cents, points, txns } = useWallet()
+  const { cents, points, txns, nextExpiry } = useWallet()
+  const expiringSoon = nextExpiry && isExpiringSoon(nextExpiry.date)
   const featured = REWARDS.filter((r) => r.featured)
 
   return (
@@ -18,6 +19,12 @@ export default function Home() {
         <p className="points-line">
           <strong className="earned">{points.toLocaleString()} points</strong> · worth {pointsValue(points)} at any member shop
         </p>
+        {expiringSoon && (
+          <Link to="/wallet/points" className="expiry-note">
+            <span className="pill pill-ready">Expiring soon</span>
+            {nextExpiry.points} points expire {dayDate(nextExpiry.date)}
+          </Link>
+        )}
         <div className="balance-actions">
           <Link to="/pay" className="btn btn-primary"><Icon name="pay" size={18} /> Pay</Link>
           <Link to="/wallet/add" className="btn btn-secondary"><Icon name="plus" size={18} /> Add funds</Link>

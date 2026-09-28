@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Modal, Page, ShopBadge } from '../components/ui'
 import { CENTS_PER_POINT, POINTS_PER_DOLLAR, shopById } from '../data'
-import { money, pointsApplicable, useWallet } from '../store'
+import { dayDate, expiryForNewPoints, money, pointsApplicable, useWallet } from '../store'
 import NotFound from './NotFound'
 
 const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '00', '0', '⌫']
@@ -31,6 +31,7 @@ export default function PayAmount() {
 
   const confirm = () => {
     const txn = pay(shop.id, total, usePoints)
+    setConfirming(false) // close before the balance updates so the sheet never shows recalculated numbers
     navigate(`/wallet/activity/${txn.id}?paid=1`, { replace: true })
   }
 
@@ -71,6 +72,7 @@ export default function PayAmount() {
           {pointsUsed > 0 && <div><dt>Points applied</dt><dd>−{pointsUsed} points ({money(pointsUsed * CENTS_PER_POINT)})</dd></div>}
           <div><dt>From balance</dt><dd>{money(fromBalance)}</dd></div>
           <div><dt>You'll earn</dt><dd className="earned">+{earned} points</dd></div>
+          {earned > 0 && <div><dt>They expire</dt><dd>{dayDate(expiryForNewPoints())}</dd></div>}
         </dl>
         <div className="sheet-actions">
           <button className="btn btn-quiet" onClick={() => setConfirming(false)}>Cancel</button>

@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Page, ShopBadge } from '../components/ui'
 import { REWARDS, shopById } from '../data'
-import { pointsValue, useWallet } from '../store'
+import { dayDate, pointsValue, useWallet } from '../store'
 
 export default function Rewards() {
-  const { points } = useWallet()
+  const { points, nextExpiry } = useWallet()
   const [affordableOnly, setAffordableOnly] = useState(false)
   const list = REWARDS.filter((r) => !affordableOnly || r.points <= points).sort((a, b) => a.points - b.points)
 
@@ -16,6 +16,7 @@ export default function Rewards() {
         <span>You have</span>
         <strong>{points.toLocaleString()} points</strong>
         <small>Worth {pointsValue(points)} at any member shop</small>
+        {nextExpiry && <Link to="/wallet/points" className="banner-link">{nextExpiry.points} points expire {dayDate(nextExpiry.date)}</Link>}
       </div>
       <div className="chips">
         <button className={`chip${!affordableOnly ? ' active' : ''}`} onClick={() => setAffordableOnly(false)}>All rewards</button>

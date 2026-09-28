@@ -1,7 +1,7 @@
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { FakeQr, Icon, Page, ShopBadge } from '../components/ui'
 import { rewardById, shopById } from '../data'
-import { money, pointsValue, shortDate, useWallet } from '../store'
+import { dayDate, expiresOn, money, pointsValue, shortDate, useWallet } from '../store'
 import NotFound from './NotFound'
 
 export default function TxnDetail() {
@@ -47,6 +47,7 @@ export default function TxnDetail() {
               <div><dt>Paid from balance</dt><dd>{money(txn.cents)}</dd></div>
               {txn.pointsUsed > 0 && <div><dt>Points applied</dt><dd>{txn.pointsUsed} points ({pointsValue(txn.pointsUsed)})</dd></div>}
               <div><dt>Points earned</dt><dd className="earned">+{txn.pointsEarned} points</dd></div>
+              {txn.pointsEarned > 0 && <div><dt>They expire</dt><dd>{dayDate(expiresOn(txn.date))}</dd></div>}
             </>
           )}
           {txn.kind === 'redeem' && (

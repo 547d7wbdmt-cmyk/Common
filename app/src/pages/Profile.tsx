@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BrandMark, Page } from '../components/ui'
-import { CENTS_PER_POINT, POINTS_PER_DOLLAR, SHOPS } from '../data'
+import { CENTS_PER_POINT, POINTS_EXPIRE_MONTHS, POINTS_PER_DOLLAR, SHOPS } from '../data'
 import { useWallet } from '../store'
 
 export default function Profile() {
@@ -21,6 +21,7 @@ export default function Profile() {
         <li><strong>Pay</strong> with the app at any of our {SHOPS.length} member shops.</li>
         <li><strong>Earn {POINTS_PER_DOLLAR} points for every $1.</strong> Each point takes ${(CENTS_PER_POINT / 100).toFixed(2)} off a purchase at any member shop.</li>
         <li><strong>Spend points</strong> on rewards or toward any payment.</li>
+        <li><strong>Points expire {POINTS_EXPIRE_MONTHS} months after you earn them.</strong> Your oldest points are used first.</li>
       </ol>
 
       <div className="list">

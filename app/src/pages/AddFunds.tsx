@@ -20,6 +20,7 @@ export default function AddFunds() {
 
   const confirm = () => {
     const txn = addFunds(value, methodLabel)
+    setConfirming(false)
     navigate(`/wallet/activity/${txn.id}?added=1`, { replace: true })
   }
 

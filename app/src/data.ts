@@ -4,6 +4,8 @@
 export const CENTS_PER_POINT = 1 // 1 point = $0.01
 /** Points earned per $1 paid through the app (same at every shop). */
 export const POINTS_PER_DOLLAR = 5
+/** Points expire this many months after they are earned. Oldest points are used first. */
+export const POINTS_EXPIRE_MONTHS = 6
 
 export type Shop = {
   id: string

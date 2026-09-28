@@ -11,6 +11,7 @@ import Wallet from './pages/Wallet'
 import AddFunds from './pages/AddFunds'
 import Activity from './pages/Activity'
 import TxnDetail from './pages/TxnDetail'
+import Points from './pages/Points'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 
@@ -42,7 +43,7 @@ function Shell() {
 /*
  * Page map — each layer is a URL, so Back / refresh / deep links work.
  *   Layer 1: /  /shops  /pay  /rewards  /wallet
- *   Layer 2: /shops/:shopId  /pay/:shopId  /rewards/:rewardId  /wallet/add  /wallet/activity
+ *   Layer 2: /shops/:shopId  /pay/:shopId  /rewards/:rewardId  /wallet/add  /wallet/activity  /wallet/points
  *   Layer 3: /shops/:shopId/rewards/:rewardId  /wallet/activity/:txnId
  *   Overlays (confirm, redeem code, QR) are modals on top of the current page.
  */
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="wallet/add" element={<AddFunds />} />
         <Route path="wallet/activity" element={<Activity />} />
         <Route path="wallet/activity/:txnId" element={<TxnDetail />} />
+        <Route path="wallet/points" element={<Points />} />
         <Route path="profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Route>

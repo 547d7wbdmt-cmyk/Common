@@ -244,6 +244,10 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .eyebrow { font-size: 14px; color: var(--ink-muted); }
 .balance { font-family: var(--font-display); font-size: 44px; font-weight: 800; letter-spacing: -0.03em; color: var(--evergreen); font-variant-numeric: tabular-nums; margin: 2px 0 4px; }
 .points-line { font-size: 14px; }
+.expiry-note { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.banner-link { margin-top: 6px; font-size: 14px; }
+.stat-link { color: var(--ink); font-weight: 400; }
+.stat-link:hover { border-color: var(--evergreen); }
 .balance-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
 
 .scroller { display: flex; gap: 12px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 6px; scroll-snap-type: x mandatory; scrollbar-width: none; }

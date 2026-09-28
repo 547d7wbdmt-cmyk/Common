@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FakeQr, Icon, Logo, Modal, Page, TxnRow } from '../components/ui'
-import { money, pointsValue, useWallet } from '../store'
+import { dayDate, money, pointsValue, useWallet } from '../store'
 
 export default function Wallet() {
-  const { cents, points, txns } = useWallet()
+  const { cents, points, txns, nextExpiry } = useWallet()
   const [showCard, setShowCard] = useState(false)
 
   return (
@@ -15,11 +15,12 @@ export default function Wallet() {
           <small>Balance</small>
           <strong>{money(cents)}</strong>
         </div>
-        <div className="stat">
+        <Link to="/wallet/points" className="stat stat-link">
           <small>Points</small>
           <strong>{points.toLocaleString()}</strong>
           <small>{pointsValue(points)} value</small>
-        </div>
+          {nextExpiry && <small>{nextExpiry.points} expire {dayDate(nextExpiry.date)}</small>}
+        </Link>
       </div>
 
       <div className="action-grid">
