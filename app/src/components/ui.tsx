@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useId, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { rewardById, shopById, type Shop } from '../data'
 import { money, shortDate, type Txn } from '../store'
@@ -27,34 +27,44 @@ export function Icon({ name, size = 22 }: { name: keyof typeof ICONS | string; s
 }
 
 /**
- * CommonWealth mark: a coin with a storefront awning inside.
- * Uses the --logo-* tokens; dark mode swaps in the reverse coin. Minimum size 24px.
+ * CommonWealth mark: a coin with a storefront awning inside, traced from the
+ * official artwork (brand/logos/commonwealth-mark.png). Uses the --logo-* tokens,
+ * so dark mode gets the reverse coin. Minimum size 24px.
  */
-export function BrandMark({ size = 36 }: { size?: number }) {
-  const stripes = [0, 1, 2, 3]
+export function BrandMark({ size = 40 }: { size?: number }) {
+  const px = Math.max(size, 24)
+  const clipId = 'awning-' + useId().replace(/[^a-zA-Z0-9]/g, '')
   return (
-    <svg width={Math.max(size, 24)} height={Math.max(size, 24)} viewBox="0 0 64 64" aria-hidden="true">
-      <circle cx="32" cy="32" r="31" fill="var(--logo-rim)" />
-      <circle cx="32" cy="32" r="26" fill="var(--logo-coin)" />
-      <rect x="20" y="29" width="24" height="18" fill="var(--logo-face)" />
-      <rect x="28" y="35" width="8" height="12" fill="var(--logo-coin)" />
-      {stripes.map((i) => (
-        <g key={i} fill={i % 2 ? 'var(--logo-face)' : 'var(--logo-awning)'}>
-          <rect x={16 + i * 8} y="17" width="8" height="10" />
-          <circle cx={20 + i * 8} cy="27" r="4" />
-        </g>
-      ))}
+    <svg width={px} height={px} viewBox="72 72 576 576" aria-hidden="true" className="brand-mark">
+      <defs>
+        <clipPath id={clipId}>
+          <circle cx="360" cy="360" r="252" />
+        </clipPath>
+      </defs>
+      <circle cx="360" cy="360" r="288" fill="var(--logo-coin)" />
+      <g clipPath={`url(#${clipId})`}>
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i} fill={i % 2 ? 'var(--logo-face)' : 'var(--logo-awning)'}>
+            <rect x={60 + 150 * i} y="100" width="150" height="223" />
+            <circle cx={135 + 150 * i} cy="323" r="75" />
+          </g>
+        ))}
+      </g>
+      <polygon points="127,456 593,456 579,486 141,486" fill="var(--logo-awning)" />
     </svg>
   )
 }
 
-/** Full lockup: mark, wordmark and the endorser line. */
+/** Full lockup, matching the official artwork: mark, two-tone wordmark, endorser line. */
 export function Logo() {
   return (
-    <Link to="/" className="logo" aria-label="CommonWealth home">
+    <Link to="/" className="logo" aria-label="CommonWealth by Common Cents Collective, home">
       <BrandMark />
       <span className="logo-text">
-        <span className="wordmark">CommonWealth</span>
+        <span className="wordmark">
+          <span className="wm-common">Common</span>
+          <span className="wm-wealth">Wealth</span>
+        </span>
         <span className="endorser">by Common Cents Collective</span>
       </span>
     </Link>

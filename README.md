@@ -49,6 +49,11 @@ brand palette (muted text, dividers, tinted panels, text on buttons) are
 derived; every text pair was checked for 4.5:1 contrast in both themes.
 In dark mode the logo uses the reverse coin color.
 
+The official logo files and brand guide are in `brand/`. The in-app mark is
+a vector traced from `brand/logos/commonwealth-mark.png` (matches it to
+within anti-aliasing), and the lockup sets the two-tone wordmark and
+endorser line in live type so it follows light and dark mode.
+
 ## Where things live
 
 - `app/src/data.ts` sample shops, rewards, point rules (`CENTS_PER_POINT`, `POINTS_PER_DOLLAR`)
