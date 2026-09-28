@@ -67,7 +67,7 @@ export default function AddFunds() {
           <div><dt>New balance</dt><dd>{money(cents + value)}</dd></div>
         </dl>
         <div className="sheet-actions">
-          <button className="btn btn-secondary" onClick={() => setConfirming(false)}>Cancel</button>
+          <button className="btn btn-quiet" onClick={() => setConfirming(false)}>Cancel</button>
           <button className="btn btn-primary" onClick={confirm}>Confirm</button>
         </div>
       </Modal>

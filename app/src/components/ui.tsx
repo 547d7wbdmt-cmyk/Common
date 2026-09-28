@@ -26,12 +26,36 @@ export function Icon({ name, size = 22 }: { name: keyof typeof ICONS | string; s
   )
 }
 
+/**
+ * CommonWealth mark: a coin with a storefront awning inside.
+ * Logo colors are fixed (they don't flip with the theme). Minimum size 24px.
+ */
+export function BrandMark({ size = 36 }: { size?: number }) {
+  const stripes = [0, 1, 2, 3]
+  return (
+    <svg width={Math.max(size, 24)} height={Math.max(size, 24)} viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="31" fill="#98521F" />
+      <circle cx="32" cy="32" r="26" fill="#1D5A43" />
+      <rect x="20" y="29" width="24" height="18" fill="#FBF8F1" />
+      <rect x="28" y="35" width="8" height="12" fill="#1D5A43" />
+      {stripes.map((i) => (
+        <g key={i} fill={i % 2 ? '#FBF8F1' : '#F2B233'}>
+          <rect x={16 + i * 8} y="17" width="8" height="10" />
+          <circle cx={20 + i * 8} cy="27" r="4" />
+        </g>
+      ))}
+    </svg>
+  )
+}
+
+/** Full lockup: mark, wordmark and the endorser line. */
 export function Logo() {
   return (
-    <Link to="/" className="logo" aria-label="Common Cents Collective home">
-      <span className="logo-mark">¢</span>
+    <Link to="/" className="logo" aria-label="CommonWealth home">
+      <BrandMark />
       <span className="logo-text">
-        Common Cents <small>Collective</small>
+        <span className="wordmark">CommonWealth</span>
+        <span className="endorser">by Common Cents Collective</span>
       </span>
     </Link>
   )
@@ -44,7 +68,7 @@ export function Logo() {
 export function Page({ title, back, children, action }: { title?: string; back?: string; children: ReactNode; action?: ReactNode }) {
   const navigate = useNavigate()
   useEffect(() => {
-    document.title = title ? `${title} · Common Cents Collective` : 'Common Cents Collective'
+    document.title = title ? `${title} · CommonWealth` : 'CommonWealth'
     window.scrollTo(0, 0)
   }, [title])
 
@@ -126,8 +150,8 @@ export function FakeQr({ value, size = 180 }: { value: string; size?: number }) 
     }
   return (
     <svg className="qr" width={size} height={size} viewBox={`-1 -1 ${n + 2} ${n + 2}`} role="img" aria-label="QR code">
-      <rect x={-1} y={-1} width={n + 2} height={n + 2} fill="#fff" />
-      <g fill="#10231c">{cells}</g>
+      <rect x={-1} y={-1} width={n + 2} height={n + 2} fill="#fbf8f1" />
+      <g fill="#1c2621">{cells}</g>
     </svg>
   )
 }
@@ -138,9 +162,9 @@ export function TxnRow({ txn }: { txn: Txn }) {
   const amount =
     txn.kind === 'load' ? <span className="pos">+{money(txn.cents)}</span>
     : txn.kind === 'payment' ? <span>−{money(txn.cents)}</span>
-    : <span className="pts-neg">−{txn.pointsUsed} pts</span>
+    : <span className="pts-neg">−{txn.pointsUsed} points</span>
   const sub =
-    txn.kind === 'payment' ? `+${txn.pointsEarned} pts earned` : txn.kind === 'redeem' ? `Reward · ${shop?.name}` : txn.method
+    txn.kind === 'payment' ? `+${txn.pointsEarned} points earned` : txn.kind === 'redeem' ? `Reward · ${shop?.name}` : txn.method
 
   return (
     <Link to={`/wallet/activity/${txn.id}`} className="row">

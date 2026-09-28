@@ -12,7 +12,7 @@ export default function ShopDetail() {
 
   return (
     <Page title={shop.name} back="/shops">
-      <section className="shop-hero" style={{ background: shop.color }}>
+      <section className="shop-hero">
         <ShopBadge shop={shop} size={64} />
         <div>
           <h2>{shop.name}</h2>
@@ -24,7 +24,7 @@ export default function ShopDetail() {
       <dl className="facts">
         <div><dt>Address</dt><dd>{shop.address}</dd></div>
         <div><dt>Hours</dt><dd>{shop.hours}</dd></div>
-        <div><dt>You earn</dt><dd>{POINTS_PER_DOLLAR} pts per $1</dd></div>
+        <div><dt>You earn</dt><dd>{POINTS_PER_DOLLAR} points per $1</dd></div>
       </dl>
 
       <Link to={`/pay/${shop.id}`} className="btn btn-primary btn-block"><Icon name="pay" size={18} /> Pay {shop.name}</Link>
@@ -37,7 +37,7 @@ export default function ShopDetail() {
               <strong>{r.title}</strong>
               <small>{r.details}</small>
             </span>
-            <span className={`pill ${points >= r.points ? 'pill-ok' : ''}`}>{r.points} pts</span>
+            <span className={`pill ${points >= r.points ? 'pill-ready' : ''}`}>{r.points} points</span>
           </Link>
         ))}
       </div>

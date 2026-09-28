@@ -47,7 +47,7 @@ export default function PayAmount() {
         <span className="toggle-track" />
         <span>
           <strong>Use my points</strong>
-          <small>{points.toLocaleString()} pts available ({money(points * CENTS_PER_POINT)})</small>
+          <small>{points.toLocaleString()} points available ({money(points * CENTS_PER_POINT)})</small>
         </span>
       </label>
 
@@ -68,12 +68,12 @@ export default function PayAmount() {
         <dl className="facts">
           <div><dt>To</dt><dd>{shop.name}</dd></div>
           <div><dt>Total</dt><dd>{money(total)}</dd></div>
-          {pointsUsed > 0 && <div><dt>Points applied</dt><dd>−{pointsUsed} pts ({money(pointsUsed * CENTS_PER_POINT)})</dd></div>}
+          {pointsUsed > 0 && <div><dt>Points applied</dt><dd>−{pointsUsed} points ({money(pointsUsed * CENTS_PER_POINT)})</dd></div>}
           <div><dt>From balance</dt><dd>{money(fromBalance)}</dd></div>
-          <div><dt>You'll earn</dt><dd className="pos">+{earned} pts</dd></div>
+          <div><dt>You'll earn</dt><dd className="earned">+{earned} points</dd></div>
         </dl>
         <div className="sheet-actions">
-          <button className="btn btn-secondary" onClick={() => setConfirming(false)}>Cancel</button>
+          <button className="btn btn-quiet" onClick={() => setConfirming(false)}>Cancel</button>
           <button className="btn btn-primary" onClick={confirm}>Pay {money(total)}</button>
         </div>
       </Modal>

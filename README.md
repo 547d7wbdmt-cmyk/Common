@@ -1,8 +1,11 @@
-# Common Cents Collective
+# CommonWealth
 
-A shared wallet and rewards app for a collective of local businesses.
-Customers load funds, pay member shops through the app, and earn points
-that are worth the same ($0.01 each) at every shop.
+**by Common Cents Collective**
+
+A coalition rewards app for independent, locally owned businesses.
+Members load funds, pay member shops through the app, and earn points
+that are worth the same ($0.01 each) at every member shop.
+Spend here. Earn everywhere.
 
 This is the **customer-side clickable prototype**: it uses sample data
 stored in the browser (no backend yet).
@@ -35,9 +38,20 @@ Each layer is a URL, so Back, refresh and deep links work everywhere.
 - **Add funds:** Wallet → Add funds → amount + source → confirm → updated balance
 - **Redeem:** Rewards (or a shop) → reward → redeem → voucher code to show at the counter
 
+## Brand
+
+Styled to the CommonWealth brand guide: evergreen and copper brand pair,
+marigold for badges and the awning, paper ground; Bricolage Grotesque for
+headlines and the wordmark, Public Sans for text; the awning stripe as the
+one pattern. Color tokens live at the top of `app/src/index.css`. The hex
+values are interpretations of the guide's token names (it names tokens but
+not values) and every text pair was checked for 4.5:1 contrast in both
+themes. Swap in the official values when available.
+
 ## Where things live
 
 - `app/src/data.ts` sample shops, rewards, point rules (`CENTS_PER_POINT`, `POINTS_PER_DOLLAR`)
 - `app/src/store.tsx` wallet state (balance, points, transactions) saved to localStorage
 - `app/src/App.tsx` routes and bottom tabs
-- `app/src/pages/` one file per screen · `app/src/components/ui.tsx` shared UI
+- `app/src/pages/` one file per screen · `app/src/components/ui.tsx` shared UI, including the logo mark and lockup
+- `npm run build:artifact` builds a single shareable HTML file into `app/dist-artifact/`

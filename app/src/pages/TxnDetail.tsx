@@ -21,7 +21,12 @@ export default function TxnDetail() {
         <div className="success">
           <span className="success-icon"><Icon name="check" size={28} /></span>
           <h2>{justPaid ? 'Payment sent' : 'Funds added'}</h2>
-          <p>New balance {money(cents)} · {points.toLocaleString()} pts</p>
+          {txn.kind === 'payment' && shop ? (
+            <p>
+              You earned <strong className="earned">{txn.pointsEarned} points</strong> at {shop.name}. Use them at any member shop.
+            </p>
+          ) : null}
+          <p className="muted">Balance {money(cents)} · {points.toLocaleString()} points</p>
         </div>
       )}
 
@@ -40,13 +45,13 @@ export default function TxnDetail() {
           {txn.kind === 'payment' && (
             <>
               <div><dt>Paid from balance</dt><dd>{money(txn.cents)}</dd></div>
-              {txn.pointsUsed > 0 && <div><dt>Points applied</dt><dd>{txn.pointsUsed} pts ({pointsValue(txn.pointsUsed)})</dd></div>}
-              <div><dt>Points earned</dt><dd className="pos">+{txn.pointsEarned} pts</dd></div>
+              {txn.pointsUsed > 0 && <div><dt>Points applied</dt><dd>{txn.pointsUsed} points ({pointsValue(txn.pointsUsed)})</dd></div>}
+              <div><dt>Points earned</dt><dd className="earned">+{txn.pointsEarned} points</dd></div>
             </>
           )}
           {txn.kind === 'redeem' && (
             <>
-              <div><dt>Points used</dt><dd>{txn.pointsUsed} pts</dd></div>
+              <div><dt>Points used</dt><dd>{txn.pointsUsed} points</dd></div>
               <div><dt>Code</dt><dd className="code">{txn.code}</dd></div>
             </>
           )}

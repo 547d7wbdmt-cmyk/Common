@@ -14,8 +14,8 @@ export default function Rewards() {
       <h1 className="page-title">Rewards</h1>
       <div className="points-banner">
         <span>You have</span>
-        <strong>{points.toLocaleString()} pts</strong>
-        <small>= {pointsValue(points)}, good at every member shop</small>
+        <strong>{points.toLocaleString()} points</strong>
+        <small>Worth {pointsValue(points)} at any member shop</small>
       </div>
       <div className="chips">
         <button className={`chip${!affordableOnly ? ' active' : ''}`} onClick={() => setAffordableOnly(false)}>All rewards</button>
@@ -31,11 +31,11 @@ export default function Rewards() {
                 <strong>{r.title}</strong>
                 <small>{shop.name}</small>
               </span>
-              <span className={`pill ${points >= r.points ? 'pill-ok' : ''}`}>{r.points} pts</span>
+              <span className={`pill ${points >= r.points ? 'pill-ready' : ''}`}>{r.points} points</span>
             </Link>
           )
         })}
-        {list.length === 0 && <p className="empty">Keep shopping local — you'll unlock rewards soon.</p>}
+        {list.length === 0 && <p className="empty">Earn more points at any member shop to unlock these rewards.</p>}
       </div>
     </Page>
   )

@@ -9,19 +9,22 @@ export default function Home() {
 
   return (
     <Page>
+      <h1 className="headline">Spend here. Earn everywhere.</h1>
+
       <section className="balance-card">
+        <div className="awning" aria-hidden="true" />
         <p className="eyebrow">Available balance</p>
         <p className="balance">{money(cents)}</p>
         <p className="points-line">
-          <strong>{points.toLocaleString()} pts</strong> · worth {pointsValue(points)} at any member shop
+          <strong className="earned">{points.toLocaleString()} points</strong> · worth {pointsValue(points)} at any member shop
         </p>
         <div className="balance-actions">
-          <Link to="/pay" className="btn btn-light"><Icon name="pay" size={18} /> Pay</Link>
-          <Link to="/wallet/add" className="btn btn-ghost-light"><Icon name="plus" size={18} /> Add funds</Link>
+          <Link to="/pay" className="btn btn-primary"><Icon name="pay" size={18} /> Pay</Link>
+          <Link to="/wallet/add" className="btn btn-secondary"><Icon name="plus" size={18} /> Add funds</Link>
         </div>
       </section>
 
-      <p className="hint">Earn {POINTS_PER_DOLLAR} pts for every $1 you pay at {SHOPS.length} local shops.</p>
+      <p className="hint">Earn {POINTS_PER_DOLLAR} points for every $1 at our {SHOPS.length} member shops. Use them at any of them.</p>
 
       <div className="section-head">
         <h2>Featured rewards</h2>
@@ -35,14 +38,14 @@ export default function Home() {
               <ShopBadge shop={shop} size={36} />
               <strong>{r.title}</strong>
               <small>{shop.name}</small>
-              <span className={`pill ${points >= r.points ? 'pill-ok' : ''}`}>{r.points} pts</span>
+              <span className={`pill ${points >= r.points ? 'pill-ready' : ''}`}>{r.points} points</span>
             </Link>
           )
         })}
       </div>
 
       <div className="section-head">
-        <h2>Nearby shops</h2>
+        <h2>Member shops near you</h2>
         <Link to="/shops">See all</Link>
       </div>
       <div className="grid">

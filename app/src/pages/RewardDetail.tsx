@@ -31,22 +31,22 @@ export default function RewardDetail() {
       </section>
 
       <dl className="facts">
-        <div><dt>Cost</dt><dd>{reward.points} pts <small>({pointsValue(reward.points)} value)</small></dd></div>
-        <div><dt>Your points</dt><dd>{points.toLocaleString()} pts</dd></div>
+        <div><dt>Cost</dt><dd>{reward.points} points <small>({pointsValue(reward.points)} value)</small></dd></div>
+        <div><dt>Your points</dt><dd>{points.toLocaleString()} points</dd></div>
         <div><dt>Details</dt><dd>{reward.details}</dd></div>
       </dl>
 
       <button className="btn btn-primary btn-block" disabled={!canRedeem} onClick={() => setConfirming(true)}>
-        {canRedeem ? 'Redeem reward' : `Need ${reward.points - points} more pts`}
+        {canRedeem ? 'Redeem reward' : `Need ${reward.points - points} more points`}
       </button>
 
       <Modal open={confirming} onClose={() => setConfirming(false)} title="Redeem this reward?">
         <p>
-          <strong>{reward.points} pts</strong> will be used for <strong>{reward.title}</strong> at {shop.name}. You'll have{' '}
-          {points - reward.points} pts left.
+          <strong>{reward.points} points</strong> will be used for <strong>{reward.title}</strong> at {shop.name}. You'll have{' '}
+          {points - reward.points} points left.
         </p>
         <div className="sheet-actions">
-          <button className="btn btn-secondary" onClick={() => setConfirming(false)}>Cancel</button>
+          <button className="btn btn-quiet" onClick={() => setConfirming(false)}>Cancel</button>
           <button className="btn btn-primary" onClick={doRedeem}>Redeem</button>
         </div>
       </Modal>

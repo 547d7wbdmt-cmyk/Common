@@ -15,7 +15,7 @@ type Wallet = WalletState & {
   reset: () => void
 }
 
-const STORAGE_KEY = 'ccc-wallet-v1'
+const STORAGE_KEY = 'cw-wallet-v2'
 
 const daysAgo = (d: number, h = 10) => {
   const t = new Date()
@@ -30,7 +30,7 @@ const SEED: WalletState = {
   txns: [
     { id: 't4', kind: 'payment', date: daysAgo(1, 8), shopId: 'maple-coffee', cents: 575, pointsUsed: 0, pointsEarned: 25 },
     { id: 't3', kind: 'payment', date: daysAgo(2, 17), shopId: 'green-leaf', cents: 3420, pointsUsed: 0, pointsEarned: 170 },
-    { id: 't2', kind: 'redeem', date: daysAgo(4, 9), shopId: 'rosas-bakery', rewardId: 'r-croissant', pointsUsed: 350, code: 'CCC-7Q2K' },
+    { id: 't2', kind: 'redeem', date: daysAgo(4, 9), shopId: 'rosas-bakery', rewardId: 'r-croissant', pointsUsed: 350, code: 'CW-7Q2K' },
     { id: 't1', kind: 'load', date: daysAgo(6, 12), cents: 10000, method: 'Checking •••• 4821' },
   ],
 }
@@ -46,7 +46,7 @@ function load(): WalletState {
 }
 
 const newId = () => Math.random().toString(36).slice(2, 10)
-const newCode = () => 'CCC-' + Math.random().toString(36).slice(2, 6).toUpperCase()
+const newCode = () => 'CW-' + Math.random().toString(36).slice(2, 6).toUpperCase()
 
 /** How much of a bill can be covered with points (whole cents only). */
 export function pointsApplicable(points: number, totalCents: number) {

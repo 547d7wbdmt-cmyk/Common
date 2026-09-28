@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FakeQr, Icon, Modal, Page, TxnRow } from '../components/ui'
+import { FakeQr, Icon, Logo, Modal, Page, TxnRow } from '../components/ui'
 import { money, pointsValue, useWallet } from '../store'
 
 export default function Wallet() {
@@ -36,11 +36,16 @@ export default function Wallet() {
       </div>
 
       <Modal open={showCard} onClose={() => setShowCard(false)} title="Member card">
-        <div className="center">
-          <FakeQr value="member-alex-rivera" />
-          <p className="code">CCC 2048 7731</p>
-          <p className="muted">Shops can scan this to look up your account.</p>
+        <div className="member-card">
+          <div className="awning" aria-hidden="true" />
+          <div className="member-card-body">
+            <Logo />
+            <FakeQr value="member-alex-rivera" />
+            <p className="code">CW 2048 7731</p>
+            <p>Alex Rivera · Member</p>
+          </div>
         </div>
+        <p className="muted center">Member shops scan this to add points to your account.</p>
       </Modal>
     </Page>
   )
