@@ -175,6 +175,8 @@ export function seedState(now = new Date()): MerchantState {
     for (let i = 0; i < count; i++) {
       const t = new Date(day)
       t.setHours(7 + Math.floor(r() * 8), Math.floor(r() * 60), 0, 0)
+      // Today's sample sales land in the hours before "now", so the demo is never empty early in the day.
+      if (back === 0) t.setTime(now.getTime() - Math.floor(r() * 6 * 60 + 5) * 60000)
       if (t > now) continue
       const staff = staffNames[Math.floor(r() * 3)]
       const memberId = pickMember()
