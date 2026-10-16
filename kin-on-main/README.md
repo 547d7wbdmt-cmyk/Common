@@ -21,6 +21,11 @@ npm run dev      # http://localhost:5173
 
 `npm run build` type-checks and builds; `npm run lint` runs oxlint.
 
+**Shareable link:** `npm run build:artifact` packs the whole app into one page,
+`dist-artifact/kin-on-main.html`, which is published as a private Claude artifact.
+That build keeps navigation in memory (no URL changes), and the SVG download links on the
+Logo screen don't work there.
+
 ## Page map
 
 | Layer | Screens |
@@ -44,7 +49,7 @@ npm run dev      # http://localhost:5173
 
 - Colors: Main Street Brick `#B5482F`, Daybreak Gold `#F2B33D`, Dawn Indigo `#24304F`, Kin Teal `#2F7F78`, Paper Cream `#FAF4E8` (tokens at the top of `src/index.css`)
 - Type: Fraunces (display) and Source Sans 3 (UI), from Google Fonts
-- **Logo:** the storefront logo. The cream version is primary and the navy one is for dark backgrounds. Source art is in `brand/logo/`. Web copies and SVG marks (full color, plus one-color indigo, cream and black) are in `public/brand/`. In code, `KinMark` (`src/components/ui.tsx`, with a `mono` option) and `LogoLockup` draw them. Profile → **Logo** (`/profile/logo`) shows every version, the downloads and the usage rules.
+- **Logo:** the storefront logo. The cream version is primary and the navy one is for dark backgrounds. Source art is in `brand/logo/`. Web copies of the logo are in `src/assets/`, and the SVG marks (full color, plus one-color indigo, cream and black) are in `public/brand/`. In code, `KinMark` (`src/components/ui.tsx`, with a `mono` option) and `LogoLockup` draw them. Profile → **Logo** (`/profile/logo`) shows every version, the downloads and the usage rules.
 - `public/kith-and-coin-collective.png` is the company logo, used on the About screen only.
 
 ## Still needs review

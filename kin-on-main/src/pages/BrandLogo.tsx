@@ -1,8 +1,10 @@
+import logoCream from '../assets/kin-on-main-logo-cream.png'
+import logoNavy from '../assets/kin-on-main-logo-navy.png'
 import { KinMark, Page } from '../components/ui'
 
 const LOCKUPS = [
-  { src: '/brand/kin-on-main-logo-cream.png', name: 'Primary · cream', note: 'Use this by default: the app, receipts, counter cards, window decals and print.' },
-  { src: '/brand/kin-on-main-logo-navy.png', name: 'Navy background', note: 'Only where the background is dark: social posts, signage, dark mode.' },
+  { src: logoCream, name: 'Primary · cream', note: 'Use this by default: the app, receipts, counter cards, window decals and print.' },
+  { src: logoNavy, name: 'Navy background', note: 'Only where the background is dark: social posts, signage, dark mode.' },
 ]
 
 const MARKS = [
@@ -42,6 +44,7 @@ export default function BrandLogo() {
       </div>
 
       <p className="label">Download the mark (SVG)</p>
+      {import.meta.env.VITE_ARTIFACT && <p className="muted">These files are in the project at kin-on-main/public/brand/. Downloads only work when the app runs from the project.</p>}
       <div className="list">
         {MARKS.map((m) => (
           <a key={m.file} href={`/brand/${m.file}`} download className="row">

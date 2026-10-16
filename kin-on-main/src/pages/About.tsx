@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import kithAndCoin from '../assets/kith-and-coin-collective.png'
 import { Icon, LogoLockup } from '../components/ui'
 
 /** Brand story (short form from the brand guide). */
@@ -33,7 +34,7 @@ export default function About() {
           <li><strong>Plain dealing.</strong> Simple rules, clear terms, no fine-print surprises.</li>
         </ul>
         <div className="company">
-          <img src="/kith-and-coin-collective.png" alt="Kith & Coin Collective" width={120} height={120} />
+          <img src={kithAndCoin} alt="Kith & Coin Collective" width={120} height={120} />
           <p className="fine">
             Kin on Main is a program of Kith &amp; Coin Collective, founded in the Chicago area to build local wealth together.
           </p>

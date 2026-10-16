@@ -1,5 +1,7 @@
 import { useEffect, useId, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import logoCream from '../assets/kin-on-main-logo-cream.png'
+import logoNavy from '../assets/kin-on-main-logo-navy.png'
 import { BLOCK, rewardById, shopById, type Shop } from '../data'
 import { shortDate, type Activity } from '../store'
 
@@ -81,8 +83,8 @@ export function KinMark({ size = 34, mono = false }: { size?: number; mono?: boo
 export function LogoLockup({ size = 220 }: { size?: number }) {
   return (
     <picture className="logo-lockup">
-      <source srcSet="/brand/kin-on-main-logo-navy.png" media="(prefers-color-scheme: dark)" />
-      <img src="/brand/kin-on-main-logo-cream.png" width={size} height={size} alt="Kin on Main: Main Street, rising together" />
+      <source srcSet={logoNavy} media="(prefers-color-scheme: dark)" />
+      <img src={logoCream} width={size} height={size} alt="Kin on Main: Main Street, rising together" />
     </picture>
   )
 }
