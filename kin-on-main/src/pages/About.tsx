@@ -23,8 +23,8 @@ export default function About() {
         </div>
         <p>
           Kin on Main is a shared rewards program for the independent businesses on your street. Shop at the bakery, earn
-          Kin Points you can use at the hardware store, the salon or the taquería down the block. Every visit keeps the
-          neighborhood strong and helps the businesses you love keep rising.
+          Kin Points you can use at the hardware store, the salon or the taquería. Every visit supports the independent
+          businesses in your neighborhood.
         </p>
         <h2>What we stand for</h2>
         <ul>

@@ -21,7 +21,7 @@ export default function ActivityList() {
       <h1 className="page-title">Activity</h1>
       <div className="stat-row">
         <div className="stat"><strong>{shopsVisited}</strong><small>member businesses visited</small></div>
-        <div className="stat"><strong>{crossShop}</strong><small>rewards used down the block</small></div>
+        <div className="stat"><strong>{crossShop}</strong><small>rewards used at a different shop</small></div>
       </div>
       <div className="chips" role="tablist">
         {FILTERS.map((f) => (

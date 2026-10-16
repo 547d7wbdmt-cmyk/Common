@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <Page title="Not found" back="/">
       <div className="center">
-        <p className="empty">We couldn’t find that spot on the block.</p>
+        <p className="empty">We couldn’t find that page.</p>
         <Link to="/" className="btn btn-primary">Back home</Link>
       </div>
     </Page>

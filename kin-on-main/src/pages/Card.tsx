@@ -51,7 +51,7 @@ export default function Card() {
         </button>
       </section>
 
-      <Modal open={!!earned} onClose={() => setEarned(null)} title="Thanks for shopping the block">
+      <Modal open={!!earned} onClose={() => setEarned(null)} title="Kin Points added">
         {earned && (
           <div className="success">
             <span className="success-icon"><Icon name="check" size={28} /></span>
@@ -61,7 +61,7 @@ export default function Card() {
               <Link to={`/rewards/${nextUse.id}`} className="nudge" onClick={() => setEarned(null)}>
                 <ShopBadge shop={shopById(nextUse.shopId)!} size={36} />
                 <span>
-                  <strong>Use them down the block</strong>
+                  <strong>Use them at another shop</strong>
                   <small>{nextUse.title} · {shopById(nextUse.shopId)!.name}</small>
                 </span>
               </Link>

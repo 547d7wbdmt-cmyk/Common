@@ -35,7 +35,7 @@ Logo screen don't work there.
 | 1 · Tabs | `/` Home · `/block` · `/card` · `/rewards` · `/activity` · `/profile` |
 | 2 · Detail | `/block/:shopId` · `/rewards/:rewardId` · `/activity/:id` · `/passport` · `/profile/logo` |
 | 3 · Deeper | `/block/:shopId/rewards/:rewardId` |
-| Overlays | Earned at register (+ "use them down the block" nudge) · confirm reward · reward code |
+| Overlays | Earned at register (+ "use them at another shop" suggestion) · confirm reward · reward code |
 
 ## Main flows
 

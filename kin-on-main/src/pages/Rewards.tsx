@@ -33,7 +33,7 @@ export default function Rewards() {
             </Link>
           )
         })}
-        {rewards.length === 0 && <p className="empty">Keep shopping the block. Rewards you can use will show up here.</p>}
+        {rewards.length === 0 && <p className="empty">Rewards you can use will show up here as you earn Kin Points.</p>}
       </div>
     </Page>
   )

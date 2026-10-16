@@ -57,7 +57,7 @@ export default function RewardDetail() {
             <FakeQr value={code.code} />
             <p className="code">{code.code}</p>
             <p>{reward.title} · {shop.name}</p>
-            {code.crossShop && <p className="pill pill-teal">Cross-shop: earned elsewhere on the block</p>}
+            {code.crossShop && <p className="pill pill-teal">Cross-shop: earned at another member business</p>}
             <Link className="btn btn-secondary btn-block" to={`/activity/${code.id}`}>View in activity</Link>
           </div>
         )}
