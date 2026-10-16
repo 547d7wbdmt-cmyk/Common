@@ -37,8 +37,8 @@ export default function Welcome() {
 
         <ol className="steps">
           <li><strong>Show your card.</strong> Earn Kin Points at any of {SHOPS.length} member businesses on the {BLOCK.name}.</li>
-          <li><strong>Use them at any member business.</strong> Points you earn at the bakery work at the bike shop, the salon or the taquería.</li>
-          <li><strong>Support local shops.</strong> Every visit helps the independent businesses in your neighborhood.</li>
+          <li><strong>Use it down the block.</strong> Kin Points you earn at the bakery work at the bike shop, the salon or the taquería.</li>
+          <li><strong>Rise together.</strong> Every visit sends neighbors to the shops around you.</li>
         </ol>
 
         <div className="welcome-actions">
@@ -82,7 +82,7 @@ export default function Welcome() {
           <span>I agree to the <Link to="/terms">program terms</Link> and privacy notice.</span>
         </label>
 
-        <button className="btn btn-primary btn-block" disabled={!agree || !name.trim() || !contact.trim()}>Join Kin on Main</button>
+        <button className="btn btn-primary btn-block" disabled={!agree || !name.trim() || !contact.trim()}>Join the block</button>
         <button type="button" className="btn btn-ghost btn-block" onClick={() => setStep('intro')}>Back</button>
       </form>
 

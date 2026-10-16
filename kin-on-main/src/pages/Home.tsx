@@ -31,8 +31,8 @@ export default function Home() {
         <Link to={`/rewards/${elsewhere.id}`} className="nudge">
           <Icon name="arrows" />
           <span>
-            <strong>Use your points at another shop</strong>
-            <small>{elsewhere.title} at {shopById(elsewhere.shopId)!.name}</small>
+            <strong>Earned it at {earnedAt.name}.</strong>
+            <small>Use it down the block: {elsewhere.title} at {shopById(elsewhere.shopId)!.name}.</small>
           </span>
           <Icon name="chevron" size={18} />
         </Link>
@@ -59,7 +59,7 @@ export default function Home() {
       </Link>
 
       <div className="section-head">
-        <h2>Featured rewards</h2>
+        <h2>Rewards on the block</h2>
         <Link to="/rewards">See all</Link>
       </div>
       <div className="scroller">
