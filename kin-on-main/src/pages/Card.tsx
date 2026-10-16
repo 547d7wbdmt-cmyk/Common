@@ -51,17 +51,18 @@ export default function Card() {
         </button>
       </section>
 
-      <Modal open={!!earned} onClose={() => setEarned(null)} title="Kin Points added">
+      <Modal open={!!earned} onClose={() => setEarned(null)} title="Kin Points Earned">
         {earned && (
           <div className="success">
             <span className="success-icon"><Icon name="check" size={28} /></span>
             <p className="amount">+{earned.points.toLocaleString()}</p>
-            <p>Kin Points earned at {shopById(earned.shopId)!.name}</p>
+            <p>Thanks for supporting our Kin on Main</p>
+            <p className="muted">Earned at {shopById(earned.shopId)!.name}</p>
             {nextUse && (
               <Link to={`/rewards/${nextUse.id}`} className="nudge" onClick={() => setEarned(null)}>
                 <ShopBadge shop={shopById(nextUse.shopId)!} size={36} />
                 <span>
-                  <strong>Use them at another shop</strong>
+                  <strong>Use them at another Kin on Main</strong>
                   <small>{nextUse.title} · {shopById(nextUse.shopId)!.name}</small>
                 </span>
               </Link>
