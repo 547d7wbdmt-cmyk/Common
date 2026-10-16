@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useId, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BLOCK, rewardById, shopById, type Shop } from '../data'
 import { shortDate, type Activity } from '../store'
@@ -29,37 +29,60 @@ export function Icon({ name, size = 22 }: { name: keyof typeof ICONS | string; s
   )
 }
 
+type MarkColors = { line: string; brick: string; light: string; gold: string; door: string; sign: string }
+
+/** The storefront shapes, drawn on a 48×48 grid. Shared by the color and one-color marks. */
+function StorefrontShapes({ c }: { c: MarkColors }) {
+  return (
+    <>
+      <rect x="7" y="5" width="34" height="3" rx="1.5" fill={c.line} />
+      <rect x="10" y="17" width="28" height="23" fill={c.brick} />
+      <path d="M8 8h32l3 10H5z" fill={c.light} />
+      <path d="M8 8h6.4L13 18H5zM20.8 8h6.4l.8 10h-8zM33.6 8H40l3 10h-8z" fill={c.gold} />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <circle key={i} cx={8.8 + i * 7.6} cy="18" r="3.8" fill={i % 2 ? c.light : c.gold} />
+      ))}
+      <rect x="12.5" y="24" width="14" height="13" fill={c.light} />
+      <path d="M15 37a4.5 4.5 0 0 1 9 0z" fill={c.gold} />
+      <path d="M19.5 29.5v1.6M15.6 31.4l1.1 1.1M23.4 31.4l-1.1 1.1" stroke={c.gold} strokeWidth="1.3" strokeLinecap="round" />
+      <rect x="29" y="24" width="7" height="16" fill={c.door} />
+      <rect x="30" y="28" width="5" height="2.4" rx="0.5" fill={c.sign} />
+      <rect x="4" y="40" width="40" height="2.6" rx="1.3" fill={c.line} />
+    </>
+  )
+}
+
+const COLOR: MarkColors = { line: 'var(--mark-line)', brick: 'var(--brick)', light: 'var(--mark-light)', gold: 'var(--gold)', door: 'var(--indigo)', sign: 'var(--gold)' }
+/** Mask for the one-color mark: white is ink, black is a cut-out showing the background. */
+const MONO_MASK: MarkColors = { line: '#fff', brick: '#fff', light: '#000', gold: '#fff', door: '#000', sign: '#fff' }
+
 /**
- * Storefront mark, redrawn as SVG from the logo concept in brand/logo-ideas/
- * (striped gold awning, brick shopfront, rising sun in the window, indigo door).
- * Simplified for small sizes: the "open" sign is just a gold bar. Concept, not final art.
+ * Kin on Main storefront mark (the app icon), from the logo in brand/logo/.
+ * Simplified for small sizes: the "open" sign is a gold bar and the sun keeps three rays.
+ * `mono` draws it in one color (currentColor) for decals, receipts and stamps.
  */
-export function KinMark({ size = 34 }: { size?: number }) {
+export function KinMark({ size = 34, mono = false }: { size?: number; mono?: boolean }) {
+  const maskId = useId()
   return (
     <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true" className="kin-mark">
-      <rect x="7" y="5" width="34" height="3" rx="1.5" fill="var(--mark-line)" />
-      <rect x="10" y="17" width="28" height="23" fill="var(--brick)" />
-      <path d="M8 8h32l3 10H5z" fill="var(--mark-light)" />
-      <path d="M8 8h6.4L13 18H5zM20.8 8h6.4l.8 10h-8zM33.6 8H40l3 10h-8z" fill="var(--gold)" />
-      {[0, 1, 2, 3, 4].map((i) => (
-        <circle key={i} cx={8.8 + i * 7.6} cy="18" r="3.8" fill={i % 2 ? 'var(--mark-light)' : 'var(--gold)'} />
-      ))}
-      <rect x="12.5" y="24" width="14" height="13" fill="var(--mark-light)" />
-      <path d="M15 37a4.5 4.5 0 0 1 9 0z" fill="var(--gold)" />
-      <path d="M19.5 29.5v1.6M15.6 31.4l1.1 1.1M23.4 31.4l-1.1 1.1" stroke="var(--gold)" strokeWidth="1.3" strokeLinecap="round" />
-      <rect x="29" y="24" width="7" height="16" fill="var(--indigo)" />
-      <rect x="30" y="28" width="5" height="2.4" rx="0.5" fill="var(--gold)" />
-      <rect x="4" y="40" width="40" height="2.6" rx="1.3" fill="var(--mark-line)" />
+      {mono ? (
+        <>
+          <mask id={maskId}><StorefrontShapes c={MONO_MASK} /></mask>
+          <rect width="48" height="48" fill="currentColor" mask={`url(#${maskId})`} />
+        </>
+      ) : (
+        <StorefrontShapes c={COLOR} />
+      )}
     </svg>
   )
 }
 
-/** Full logo lockup (concept art from brand/logo-ideas/), light or dark to match the theme. */
+/** Full logo lockup: cream is the primary version; navy is used on dark backgrounds. */
 export function LogoLockup({ size = 220 }: { size?: number }) {
   return (
     <picture className="logo-lockup">
-      <source srcSet="/brand/kin-on-main-dark.png" media="(prefers-color-scheme: dark)" />
-      <img src="/brand/kin-on-main-light.png" width={size} height={size} alt="Kin on Main: Main Street, rising together" />
+      <source srcSet="/brand/kin-on-main-logo-navy.png" media="(prefers-color-scheme: dark)" />
+      <img src="/brand/kin-on-main-logo-cream.png" width={size} height={size} alt="Kin on Main: Main Street, rising together" />
     </picture>
   )
 }

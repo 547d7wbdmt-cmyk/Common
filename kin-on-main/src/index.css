@@ -355,6 +355,9 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .size-test small { color: #5c6378; font-size: 12px; }
 .size-test.dark { background: #0d2040; --mark-line: #3b4b7a; --mark-light: var(--cream); }
 .size-test.dark small { color: #a9afc2; }
+.size-test.mono { color: var(--indigo); }
+.size-test.dark.mono { color: var(--cream); }
+.notes em { font-family: var(--display); color: var(--accent); }
 .notes { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; line-height: 1.45; }
 
 .qr { border-radius: 12px; }
