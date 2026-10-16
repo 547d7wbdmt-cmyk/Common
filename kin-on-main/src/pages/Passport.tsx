@@ -15,7 +15,7 @@ export default function Passport() {
     <Page title="Block Passport" back="/">
       <section className="passport-hero">
         <p className="eyebrow">{month} challenge</p>
-        <h2>Visit {PASSPORT_GOAL} member businesses</h2>
+        <h2>Visit {PASSPORT_GOAL} Kin Shops</h2>
         <p>Get a stamp at each new spot this month. Fill the passport for <strong>+{PASSPORT_BONUS} bonus Kin Points</strong>.</p>
         <div className="stamps big">
           {Array.from({ length: PASSPORT_GOAL }, (_, i) => <span key={i} className={`stamp${i < stamped.length ? ' on' : ''}`} />)}

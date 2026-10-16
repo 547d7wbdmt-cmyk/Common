@@ -34,7 +34,7 @@ export default function Card() {
       <section className="sim">
         <p className="label">Prototype only · simulate a register scan</p>
         <label className="field">
-          <span>Member business</span>
+          <span>Kin Shop</span>
           <select value={shopId} onChange={(e) => setShopId(e.target.value)}>
             {SHOPS.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
           </select>
@@ -62,7 +62,7 @@ export default function Card() {
               <Link to={`/rewards/${nextUse.id}`} className="nudge" onClick={() => setEarned(null)}>
                 <ShopBadge shop={shopById(nextUse.shopId)!} size={36} />
                 <span>
-                  <strong>Use them at another Kin on Main</strong>
+                  <strong>Use them at another Kin Shop</strong>
                   <small>{nextUse.title} · {shopById(nextUse.shopId)!.name}</small>
                 </span>
               </Link>

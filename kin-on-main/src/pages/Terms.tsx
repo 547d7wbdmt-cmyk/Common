@@ -27,22 +27,22 @@ export default function Terms() {
 
         <h2>The short version</h2>
         <ul>
-          <li>Kin on Main is a points-based rewards program for member businesses on your block.</li>
-          <li>You earn Kin Points when you show your member card at a member business, and you can use them for rewards at any member business.</li>
+          <li>Kin on Main is a points-based rewards program for Kin Shops on your block.</li>
+          <li>You earn Kin Points when you show your member card at a Kin Shop, and you can use them for rewards at any Kin Shop.</li>
           <li><strong>Kin Points have no cash value</strong> and can’t be exchanged, sold or transferred for cash, unless state law requires otherwise.</li>
-          <li>Kin on Main is not a bank, a payment method or an investment. You pay member businesses the usual way.</li>
-          <li>Rewards are set by each member business and may change. We’ll tell you before program terms change.</li>
+          <li>Kin on Main is not a bank, a payment method or an investment. You pay Kin Shops the usual way.</li>
+          <li>Rewards are set by each Kin Shop and may change. We’ll tell you before program terms change.</li>
         </ul>
 
         <h2 id="passport">Block Passport official rules</h2>
         <p>
-          Visit {PASSPORT_GOAL} different member businesses in one calendar month and show your member card at each to add{' '}
+          Visit {PASSPORT_GOAL} different Kin Shops in one calendar month and show your member card at each to add{' '}
           {PASSPORT_BONUS} bonus Kin Points. One bonus per member per month. No drawing or element of chance.
         </p>
 
         <h2 id="privacy">Privacy</h2>
         <p>
-          We collect only what the program needs: your name, an email or mobile number, and which member businesses you visit.
+          We collect only what the program needs: your name, an email or mobile number, and which Kin Shops you visit.
           We don’t sell your information. Text messages are sent only if you opted in; reply STOP to opt out. Every email has an
           unsubscribe link and our mailing address.
         </p>

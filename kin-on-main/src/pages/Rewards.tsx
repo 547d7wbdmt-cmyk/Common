@@ -13,7 +13,7 @@ export default function Rewards() {
     <Page>
       <div>
         <h1 className="page-title">Rewards</h1>
-        <p className="muted">You have <strong>{points.toLocaleString()} Kin Points</strong> to use at any member business.</p>
+        <p className="muted">You have <strong>{points.toLocaleString()} Kin Points</strong> to use at any Kin Shop.</p>
       </div>
       <div className="chips">
         <button className={`chip${!onlyReady ? ' active' : ''}`} onClick={() => setOnlyReady(false)}>All rewards</button>

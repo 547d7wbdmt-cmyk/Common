@@ -44,18 +44,18 @@ export type Reward = {
   featured?: boolean
 }
 
-export const CATEGORIES = ['All', 'Food & Drink', 'Grocery', 'Shops', 'Services']
+export const CATEGORIES = ['All', 'Food & Drink', 'Grocery', 'Retail', 'Services']
 
 export const SHOPS: Shop[] = [
   { id: 'corner-grind', name: 'Corner Grind Coffee', category: 'Food & Drink', emoji: '☕', color: '#7a4b32', address: '1817 W 18th St', hours: '6am – 6pm daily', distance: '1 min walk', about: 'Neighborhood roaster pouring the first cup on the block since 2014.', owner: 'Marisol, owner', founding: true },
   { id: 'panaderia-sol', name: 'Panadería del Sol', category: 'Food & Drink', emoji: '🥐', color: '#c0793f', address: '1735 W 18th St', hours: '6am – 4pm, closed Mon', distance: '2 min walk', about: 'Conchas, bolillos and celebration cakes, baked before the shutters go up.', owner: 'The Herrera family', founding: true },
   { id: 'mercado-verde', name: 'Mercado Verde', category: 'Grocery', emoji: '🥬', color: '#3f7f4f', address: '1900 S Blue Island Ave', hours: '8am – 9pm daily', distance: '4 min walk', about: 'Fresh produce, pantry staples and tortillas from down the street.', owner: 'Luis, owner', founding: true },
   { id: 'la-cuadra', name: 'Taquería La Cuadra', category: 'Food & Drink', emoji: '🌮', color: '#b5482f', address: '1846 S Loomis St', hours: '10am – 10pm daily', distance: '3 min walk', about: 'Al pastor off the trompo and salsas made every morning.', owner: 'Ana & Jorge, owners' },
-  { id: 'spoke-sprocket', name: 'Spoke & Sprocket Bikes', category: 'Shops', emoji: '🚲', color: '#2f7f78', address: '1650 W 18th St', hours: '10am – 7pm, closed Tue', distance: '5 min walk', about: 'Tune-ups, used bikes and a free air pump out front.', owner: 'Dev, mechanic and owner' },
-  { id: 'eighteenth-hardware', name: '18th Street Hardware', category: 'Shops', emoji: '🔧', color: '#5a5f7a', address: '1921 W 18th St', hours: '8am – 6pm, Sun 10–4', distance: '6 min walk', about: 'Keys cut, paint mixed and advice from people who know.', owner: 'The Kowalski family', founding: true },
+  { id: 'spoke-sprocket', name: 'Spoke & Sprocket Bikes', category: 'Retail', emoji: '🚲', color: '#2f7f78', address: '1650 W 18th St', hours: '10am – 7pm, closed Tue', distance: '5 min walk', about: 'Tune-ups, used bikes and a free air pump out front.', owner: 'Dev, mechanic and owner' },
+  { id: 'eighteenth-hardware', name: '18th Street Hardware', category: 'Retail', emoji: '🔧', color: '#5a5f7a', address: '1921 W 18th St', hours: '8am – 6pm, Sun 10–4', distance: '6 min walk', about: 'Keys cut, paint mixed and advice from people who know.', owner: 'The Kowalski family', founding: true },
   { id: 'rizos-salon', name: 'Rizos Salon', category: 'Services', emoji: '✂️', color: '#9a4f7a', address: '1760 S Ashland Ave', hours: '9am – 7pm, closed Sun', distance: '7 min walk', about: 'Curl specialists, color and quick trims for the whole family.', owner: 'Yesenia, stylist and owner' },
-  { id: 'flor-de-barrio', name: 'Flor de Barrio', category: 'Shops', emoji: '💐', color: '#c0566a', address: '1712 W 18th St', hours: '9am – 6pm, closed Mon', distance: '2 min walk', about: 'Seasonal bouquets, marigolds in fall and plants for every window.', owner: 'Inés, florist' },
-  { id: 'libros-del-barrio', name: 'Libros del Barrio', category: 'Shops', emoji: '📚', color: '#4a5b8f', address: '1802 S Racine Ave', hours: '10am – 7pm, closed Tue', distance: '5 min walk', about: 'Bilingual bookstore with Saturday story time for kids.', owner: 'Tomás, bookseller' },
+  { id: 'flor-de-barrio', name: 'Flor de Barrio', category: 'Retail', emoji: '💐', color: '#c0566a', address: '1712 W 18th St', hours: '9am – 6pm, closed Mon', distance: '2 min walk', about: 'Seasonal bouquets, marigolds in fall and plants for every window.', owner: 'Inés, florist' },
+  { id: 'libros-del-barrio', name: 'Libros del Barrio', category: 'Retail', emoji: '📚', color: '#4a5b8f', address: '1802 S Racine Ave', hours: '10am – 7pm, closed Tue', distance: '5 min walk', about: 'Bilingual bookstore with Saturday story time for kids.', owner: 'Tomás, bookseller' },
 ]
 
 /** This week's featured merchant earns double Kin Points. */

@@ -47,6 +47,7 @@ Logo screen don't work there.
 
 ## Brand
 
+- In the app, a participating shop is a **Kin Shop** (the brand guide's "member business"). The shop category formerly called Shops is now Retail.
 - Colors: Main Street Brick `#B5482F`, Daybreak Gold `#F2B33D`, Dawn Indigo `#24304F`, Kin Teal `#2F7F78`, Paper Cream `#FAF4E8` (tokens at the top of `src/index.css`)
 - Type: Fraunces (display) and Source Sans 3 (UI), from Google Fonts
 - **Logo:** the storefront logo. The cream version is primary and the navy one is for dark backgrounds. Source art is in `brand/logo/`. Web copies of the logo are in `src/assets/`, and the SVG marks (full color, plus one-color indigo, cream and black) are in `public/brand/`. In code, `KinMark` (`src/components/ui.tsx`, with a `mono` option) and `LogoLockup` draw them. Profile → **Logo** (`/profile/logo`) shows every version, the downloads and the usage rules.

@@ -20,7 +20,7 @@ export default function ActivityList() {
     <Page>
       <h1 className="page-title">Activity</h1>
       <div className="stat-row">
-        <div className="stat"><strong>{shopsVisited}</strong><small>member businesses visited</small></div>
+        <div className="stat"><strong>{shopsVisited}</strong><small>Kin Shops visited</small></div>
         <div className="stat"><strong>{crossShop}</strong><small>rewards used at Kin on Main</small></div>
       </div>
       <div className="chips" role="tablist">

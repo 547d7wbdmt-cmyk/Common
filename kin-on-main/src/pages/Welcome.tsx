@@ -36,9 +36,9 @@ export default function Welcome() {
         </div>
 
         <ol className="steps">
-          <li><strong>Show your card.</strong> Earn Kin Points at any of {SHOPS.length} member businesses on the {BLOCK.name}.</li>
+          <li><strong>Show your card.</strong> Earn Kin Points at any of {SHOPS.length} Kin Shops on the {BLOCK.name}.</li>
           <li><strong>Use it down the block.</strong> Kin Points you earn at the bakery work at the bike shop, the salon or the taquería.</li>
-          <li><strong>Rise together.</strong> Every visit sends neighbors to the shops around you.</li>
+          <li><strong>Rise together.</strong> Every visit sends neighbors to the Kin Shops around you.</li>
         </ol>
 
         <div className="welcome-actions">

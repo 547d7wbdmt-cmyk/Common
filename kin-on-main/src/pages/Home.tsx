@@ -41,7 +41,7 @@ export default function Home() {
       <Link to="/passport" className="passport-card">
         <span className="row-main">
           <strong>Block Passport</strong>
-          <small>Visit {PASSPORT_GOAL} member businesses this month</small>
+          <small>Visit {PASSPORT_GOAL} Kin Shops this month</small>
         </span>
         <span className="stamps" aria-label={`${stamps} of ${PASSPORT_GOAL} stamps`}>
           {Array.from({ length: PASSPORT_GOAL }, (_, i) => <span key={i} className={`stamp${i < stamps ? ' on' : ''}`} />)}

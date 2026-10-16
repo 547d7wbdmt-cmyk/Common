@@ -16,9 +16,9 @@ export default function Block() {
     <Page>
       <div>
         <h1 className="page-title">The {BLOCK.name}</h1>
-        <p className="muted">{SHOPS.length} member businesses, all a short walk apart.</p>
+        <p className="muted">{SHOPS.length} Kin Shops, all a short walk apart.</p>
       </div>
-      <input className="search" type="search" placeholder="Search member businesses" value={query} onChange={(e) => setQuery(e.target.value)} />
+      <input className="search" type="search" placeholder="Search Kin Shops" value={query} onChange={(e) => setQuery(e.target.value)} />
       <div className="chips" role="tablist">
         {CATEGORIES.map((c) => (
           <button key={c} role="tab" aria-selected={c === category} className={`chip${c === category ? ' active' : ''}`} onClick={() => setCategory(c)}>
@@ -37,7 +37,7 @@ export default function Block() {
             {s.id === FEATURED_SHOP_ID ? <span className="pill pill-gold">2×</span> : <Icon name="chevron" size={18} />}
           </Link>
         ))}
-        {shops.length === 0 && <p className="empty">No member businesses match your search.</p>}
+        {shops.length === 0 && <p className="empty">No Kin Shops match your search.</p>}
       </div>
     </Page>
   )

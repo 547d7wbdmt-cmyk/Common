@@ -22,7 +22,7 @@ export default function ActivityDetail() {
 
         <dl className="facts">
           <div><dt>When</dt><dd>{shortDate(item.date)}</dd></div>
-          {shop && <div><dt>Member business</dt><dd><Link to={`/block/${shop.id}`}>{shop.name}</Link></dd></div>}
+          {shop && <div><dt>Kin Shop</dt><dd><Link to={`/block/${shop.id}`}>{shop.name}</Link></dd></div>}
           {item.kind === 'earn' && <div><dt>Purchase</dt><dd>{dollars(item.purchaseCents)}</dd></div>}
           {item.kind === 'use' && <div><dt>Reward</dt><dd>{rewardById(item.rewardId)?.title}</dd></div>}
           {item.kind === 'use' && <div><dt>Code</dt><dd className="code">{item.code}</dd></div>}
@@ -30,7 +30,7 @@ export default function ActivityDetail() {
           {item.kind === 'bonus' && <div><dt>For</dt><dd>{item.label}</dd></div>}
         </dl>
       </section>
-      <p className="hint">Something look off? Ask at the member business or contact Kin on Main support.</p>
+      <p className="hint">Something look off? Ask at the Kin Shop or contact Kin on Main support.</p>
     </Page>
   )
 }
