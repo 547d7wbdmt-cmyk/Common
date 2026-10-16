@@ -6,6 +6,8 @@
   --indigo: #24304F;     /* Dawn Indigo: text, headers, dark surfaces */
   --teal: #2F7F78;       /* Kin Teal: secondary accent */
   --cream: #FAF4E8;      /* Paper Cream: background */
+  --mark-line: var(--indigo);
+  --mark-light: #fffdf7;
 
   --bg: var(--cream);
   --surface: #ffffff;
@@ -33,6 +35,8 @@
     --muted: #a9afc2;
     --line: #2f3a57;
     --accent: #e7795c;
+    --mark-line: #3b4b7a;
+    --mark-light: var(--cream);
     --ok: #6fd19b;
     color-scheme: dark;
   }
@@ -81,6 +85,7 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .logo { display: flex; align-items: center; gap: 10px; color: var(--text) !important; }
 .kin-mark { flex-shrink: 0; display: block; }
 .logo-text { font-family: var(--display); font-weight: 700; line-height: 1.05; font-size: 19px; }
+.logo-text em { font-style: italic; color: var(--accent); }
 .logo-text small { display: block; font-family: 'Source Sans 3', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
 .content { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
@@ -185,6 +190,8 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .welcome-hero { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding-top: 24px; }
 .welcome-hero h1 { font-size: 40px; }
 .welcome-hero.small { padding-top: 0; }
+.logo-lockup img { display: block; max-width: 100%; height: auto; border-radius: 28px; box-shadow: 0 10px 30px rgb(36 48 79 / 0.12); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .welcome-hero.small h1 { font-size: 28px; }
 .tagline { font-family: var(--display); font-size: 20px; color: var(--accent); }
 .steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; counter-reset: s; }
@@ -338,6 +345,17 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .draft { align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--gold) 30%, var(--surface)); font-size: 13px; font-weight: 700; }
 .company { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
 .company img { border-radius: 16px; }
+
+/* ---------- Logo ideas ---------- */
+.concept { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.concept img { width: 100%; height: auto; border-radius: 20px; border: 1px solid var(--line); }
+.concept figcaption { display: flex; flex-direction: column; }
+.size-test { display: flex; align-items: flex-end; justify-content: space-around; padding: 16px; border-radius: var(--radius); background: var(--cream); border: 1px solid var(--line); }
+.size-test span { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.size-test small { color: #5c6378; font-size: 12px; }
+.size-test.dark { background: #0d2040; --mark-line: #3b4b7a; --mark-light: var(--cream); }
+.size-test.dark small { color: #a9afc2; }
+.notes { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; line-height: 1.45; }
 
 .qr { border-radius: 12px; }
 

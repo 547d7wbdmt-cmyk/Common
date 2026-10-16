@@ -47,6 +47,7 @@ export default function Profile() {
         <Link to="/about" className="row"><span className="row-main"><strong>About Kin on Main</strong></span><Icon name="chevron" size={18} /></Link>
         <Link to="/terms" className="row"><span className="row-main"><strong>Program terms</strong></span><Icon name="chevron" size={18} /></Link>
         <Link to="/terms#privacy" className="row"><span className="row-main"><strong>Privacy notice</strong></span><Icon name="chevron" size={18} /></Link>
+        <Link to="/profile/logo-ideas" className="row"><span className="row-main"><strong>Logo ideas</strong><small>Concepts for team review</small></span><Icon name="chevron" size={18} /></Link>
       </div>
 
       <button className="btn btn-secondary btn-block" onClick={() => { reset(); navigate('/welcome') }}>

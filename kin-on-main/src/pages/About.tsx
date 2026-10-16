@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Icon, KinMark } from '../components/ui'
+import { Icon, LogoLockup } from '../components/ui'
 
 /** Brand story (short form from the brand guide). */
 export default function About() {
@@ -18,8 +18,7 @@ export default function About() {
       </header>
       <main className="content prose">
         <div className="welcome-hero small">
-          <KinMark size={52} />
-          <h2 className="display">Main Street, rising together.</h2>
+          <LogoLockup size={200} />
         </div>
         <p>
           Kin on Main is a shared rewards program for the independent businesses on your street. Shop at the bakery, earn

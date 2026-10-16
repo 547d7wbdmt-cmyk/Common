@@ -28,7 +28,7 @@ npm run dev      # http://localhost:5173
 | Pre-join | `/welcome` (intro → join form, or "Explore with a sample member") · `/terms` · `/about` |
 | 0 · Shell | Top bar (logo / back + title, profile) · bottom tabs: Home, The Block, **My card**, Rewards, Activity |
 | 1 · Tabs | `/` Home · `/block` · `/card` · `/rewards` · `/activity` · `/profile` |
-| 2 · Detail | `/block/:shopId` · `/rewards/:rewardId` · `/activity/:id` · `/passport` |
+| 2 · Detail | `/block/:shopId` · `/rewards/:rewardId` · `/activity/:id` · `/passport` · `/profile/logo-ideas` |
 | 3 · Deeper | `/block/:shopId/rewards/:rewardId` |
 | Overlays | Earned at register (+ "use them down the block" nudge) · confirm reward · reward code |
 
@@ -44,7 +44,7 @@ npm run dev      # http://localhost:5173
 
 - Colors: Main Street Brick `#B5482F`, Daybreak Gold `#F2B33D`, Dawn Indigo `#24304F`, Kin Teal `#2F7F78`, Paper Cream `#FAF4E8` (tokens at the top of `src/index.css`)
 - Type: Fraunces (display) and Source Sans 3 (UI), from Google Fonts
-- **Logo: TBD.** `KinMark` in `src/components/ui.tsx` and `public/favicon.svg` are placeholders that follow the guide's direction (a rising half-sun awning over three storefronts). Swap both when the final mark is ready.
+- **Logo: storefront concept, not final.** The source art (light and dark) is in `brand/logo-ideas/`, along with notes for the designer. `KinMark` in `src/components/ui.tsx` and `public/favicon.svg` are SVG versions simplified for small sizes. The full lockup (`LogoLockup`, `public/brand/`) shows on Welcome and About. Profile → **Logo ideas** (`/profile/logo-ideas`) shows both concepts and the mark at 16–64px.
 - `public/kith-and-coin-collective.png` is the company logo, used on the About screen only.
 
 ## Still needs review

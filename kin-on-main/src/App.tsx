@@ -12,6 +12,7 @@ import ActivityList from './pages/ActivityList'
 import ActivityDetail from './pages/ActivityDetail'
 import Passport from './pages/Passport'
 import Profile from './pages/Profile'
+import LogoIdeas from './pages/LogoIdeas'
 import Terms from './pages/Terms'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
@@ -57,7 +58,7 @@ function Bare() {
  * Page map — each layer is a URL, so Back / refresh / deep links work.
  *   Pre-join:  /welcome  /terms  /about
  *   Layer 1:   /  /block  /card  /rewards  /activity  /profile
- *   Layer 2:   /block/:shopId  /rewards/:rewardId  /activity/:id  /passport
+ *   Layer 2:   /block/:shopId  /rewards/:rewardId  /activity/:id  /passport  /profile/logo-ideas
  *   Layer 3:   /block/:shopId/rewards/:rewardId
  *   Overlays (confirm, reward code, simulated register scan) are modals.
  */
@@ -81,6 +82,7 @@ export default function App() {
         <Route path="activity/:id" element={<ActivityDetail />} />
         <Route path="passport" element={<Passport />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="profile/logo-ideas" element={<LogoIdeas />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

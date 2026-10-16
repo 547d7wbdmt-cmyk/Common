@@ -30,18 +30,37 @@ export function Icon({ name, size = 22 }: { name: keyof typeof ICONS | string; s
 }
 
 /**
- * PLACEHOLDER MARK — the Kin on Main logo is TBD.
- * Follows the guide's direction (a rising half-sun that doubles as an awning arch over
- * three storefronts) so the layout is realistic. Swap this one component for the final art.
+ * Storefront mark, redrawn as SVG from the logo concept in brand/logo-ideas/
+ * (striped gold awning, brick shopfront, rising sun in the window, indigo door).
+ * Simplified for small sizes: the "open" sign is just a gold bar. Concept, not final art.
  */
 export function KinMark({ size = 34 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true" className="kin-mark">
-      <rect width="32" height="32" rx="9" fill="var(--brick)" />
-      <path d="M7 17a9 9 0 0 1 18 0z" fill="var(--gold)" />
-      <path d="M6 19h20v7H6z" fill="#FAF4E8" />
-      <path d="M12.7 19v7M19.3 19v7" stroke="var(--brick)" strokeWidth="1.6" />
+    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true" className="kin-mark">
+      <rect x="7" y="5" width="34" height="3" rx="1.5" fill="var(--mark-line)" />
+      <rect x="10" y="17" width="28" height="23" fill="var(--brick)" />
+      <path d="M8 8h32l3 10H5z" fill="var(--mark-light)" />
+      <path d="M8 8h6.4L13 18H5zM20.8 8h6.4l.8 10h-8zM33.6 8H40l3 10h-8z" fill="var(--gold)" />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <circle key={i} cx={8.8 + i * 7.6} cy="18" r="3.8" fill={i % 2 ? 'var(--mark-light)' : 'var(--gold)'} />
+      ))}
+      <rect x="12.5" y="24" width="14" height="13" fill="var(--mark-light)" />
+      <path d="M15 37a4.5 4.5 0 0 1 9 0z" fill="var(--gold)" />
+      <path d="M19.5 29.5v1.6M15.6 31.4l1.1 1.1M23.4 31.4l-1.1 1.1" stroke="var(--gold)" strokeWidth="1.3" strokeLinecap="round" />
+      <rect x="29" y="24" width="7" height="16" fill="var(--indigo)" />
+      <rect x="30" y="28" width="5" height="2.4" rx="0.5" fill="var(--gold)" />
+      <rect x="4" y="40" width="40" height="2.6" rx="1.3" fill="var(--mark-line)" />
     </svg>
+  )
+}
+
+/** Full logo lockup (concept art from brand/logo-ideas/), light or dark to match the theme. */
+export function LogoLockup({ size = 220 }: { size?: number }) {
+  return (
+    <picture className="logo-lockup">
+      <source srcSet="/brand/kin-on-main-dark.png" media="(prefers-color-scheme: dark)" />
+      <img src="/brand/kin-on-main-light.png" width={size} height={size} alt="Kin on Main: Main Street, rising together" />
+    </picture>
   )
 }
 
@@ -50,7 +69,7 @@ export function Logo() {
     <Link to="/" className="logo" aria-label="Kin on Main home">
       <KinMark />
       <span className="logo-text">
-        Kin on Main <small>{BLOCK.name}</small>
+        Kin <em>on</em> Main <small>{BLOCK.name}</small>
       </span>
     </Link>
   )

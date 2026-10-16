@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { KinMark } from '../components/ui'
+import { KinMark, LogoLockup } from '../components/ui'
 import { BLOCK, SHOPS, WELCOME_POINTS } from '../data'
 import { useMember } from '../store'
 
@@ -31,9 +31,8 @@ export default function Welcome() {
     return (
       <main className="welcome">
         <div className="welcome-hero">
-          <KinMark size={64} />
-          <h1>Kin on Main</h1>
-          <p className="tagline">Main Street, rising together.</p>
+          <h1 className="sr-only">Kin on Main</h1>
+          <LogoLockup />
         </div>
 
         <ol className="steps">
