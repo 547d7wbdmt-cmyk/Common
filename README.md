@@ -1,4 +1,11 @@
-# Common Cents Collective
+# Prototypes
+
+| Folder | What it is |
+|---|---|
+| [`kin-on-main/`](kin-on-main/README.md) | **Kin on Main** member app (Kith & Coin Collective). Points-only shared rewards. Current brand. |
+| `app/` | Earlier Common Cents Collective wallet + rewards prototype (below). |
+
+## Common Cents Collective (`app/`)
 
 A shared wallet and rewards app for a collective of local businesses.
 Customers load funds, pay member shops through the app, and earn points

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Placeholder mark (logo TBD): rising half-sun awning over three storefronts -->
+  <rect width="32" height="32" rx="8" fill="#B5482F"/>
+  <path d="M7 17a9 9 0 0 1 18 0z" fill="#F2B33D"/>
+  <path d="M6 19h20v7H6z" fill="#FAF4E8"/>
+  <path d="M12.7 19v7M19.3 19v7" stroke="#B5482F" stroke-width="1.6"/>
+</svg>
