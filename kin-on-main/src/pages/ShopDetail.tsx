@@ -50,7 +50,7 @@ export default function ShopDetail() {
           </Link>
         ))}
       </div>
-      <p className="hint">Kin Points earned at any member business work here.</p>
+      <p className="hint">Kin Points earned anywhere on the block work here.</p>
     </Page>
   )
 }
